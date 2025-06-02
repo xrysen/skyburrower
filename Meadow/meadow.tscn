@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://gq0sfv5pwpai"]
+
+[ext_resource type="Texture2D" uid="uid://d1om4iyantx7k" path="res://Meadow/MeadowSprite-sheet.png" id="1_ema1a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymxxy"]
+atlas = ExtResource("1_ema1a")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilwus"]
+atlas = ExtResource("1_ema1a")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf3fy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymxxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilwus")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_apmds"]
+radius = 17.0136
+height = 48.0255
+
+[node name="Node2D" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_yf3fy")
+frame_progress = 0.322425
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 10
+position = Vector2(4, 8)
+rotation = -1.55509
+shape = SubResource("CapsuleShape2D_apmds")

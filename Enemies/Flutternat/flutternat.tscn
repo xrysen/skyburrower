@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bot5qbpna53tr"]
+
+[ext_resource type="Texture2D" uid="uid://d20ke001a6k3d" path="res://Enemies/Flutternat/flutterNat.png" id="1_25365"]
+[ext_resource type="Script" uid="uid://8a826ntp3p0r" path="res://Enemies/Flutternat/Flutternat.gd" id="2_ag5c4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag5c4"]
+atlas = ExtResource("1_25365")
+region = Rect2(0, 0, 59, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsiac"]
+atlas = ExtResource("1_25365")
+region = Rect2(59, 0, 59, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg7jv"]
+atlas = ExtResource("1_25365")
+region = Rect2(118, 0, 59, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uejg"]
+atlas = ExtResource("1_25365")
+region = Rect2(177, 0, 59, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_diefg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag5c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsiac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg7jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uejg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25365"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25365"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag5c4"]
+bg_color = Color(0.984314, 0.298039, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ag5c4"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("2_ag5c4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_diefg")
+frame_progress = 0.653136
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_25365")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = -18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_25365")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ag5c4")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ag5c4")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

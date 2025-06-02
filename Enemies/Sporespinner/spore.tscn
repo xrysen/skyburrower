@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp7wuimtjxgmb"]
+
+[ext_resource type="Script" uid="uid://csd5xpmh6bo7v" path="res://Enemies/Sporespinner/sporeburst.gd" id="1_0b8hy"]
+[ext_resource type="Texture2D" uid="uid://6hc8tmxtdu3w" path="res://Enemies/Sporespinner/spore.png" id="1_lgbxd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lgbxd"]
+radius = 4.12311
+
+[node name="Spore" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_0b8hy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lgbxd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lgbxd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

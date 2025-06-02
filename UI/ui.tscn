@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5rnf6hl14e7x"]
+
+[ext_resource type="Script" uid="uid://b8mj4hvc1ppi" path="res://UI/UI.gd" id="1_dajm1"]
+
+[node name="Ui" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dajm1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
