@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn1cm1mf8h5jf"]
+
+[ext_resource type="Script" uid="uid://bagxstgbr3w11" path="res://Enemies/Thistle Turret/thistle_turret.gd" id="1_kh00n"]
+[ext_resource type="Texture2D" uid="uid://b5to0lwjgmsj6" path="res://Enemies/Thistle Turret/thistle.png" id="1_rhbnb"]
+
+[node name="ThistleTurret" type="Node2D"]
+script = ExtResource("1_kh00n")
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualRoot"]
+texture = ExtResource("1_rhbnb")
+centered = false
+offset = Vector2(0, -32)

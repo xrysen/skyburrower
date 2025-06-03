@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkft4pc1ton25"]
+[gd_scene load_steps=15 format=3 uid="uid://bkft4pc1ton25"]
 
 [ext_resource type="Texture2D" uid="uid://c4ttclot1k2s4" path="res://Levels/Level 1/CloudsBack.png" id="1_37kl0"]
 [ext_resource type="Texture2D" uid="uid://do1ib11ijuj6v" path="res://Levels/Level 1/CloudsFront.png" id="2_8uh7m"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="11_5tkv4"]
 [ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="12_5tkv4"]
 [ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="13_0m0f1"]
+[ext_resource type="PackedScene" uid="uid://bn1cm1mf8h5jf" path="res://Enemies/Thistle Turret/ThistleTurret.tscn" id="14_b0q6j"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -75,3 +76,10 @@ on_death = ExtResource("13_0m0f1")
 enemies_per_wave = 3
 time_between_spawns = 3.0
 max_waves = 6
+
+[node name="ThistleTurret" parent="." instance=ExtResource("14_b0q6j")]
+position = Vector2(362, 295)
+spawn_delay = 10.0
+
+[node name="ThistleTurret2" parent="." instance=ExtResource("14_b0q6j")]
+position = Vector2(526, 295)
