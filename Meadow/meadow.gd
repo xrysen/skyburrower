@@ -6,9 +6,11 @@ extends CharacterBody2D
 var fire_timer := 0.0
 var maxHealth := 3
 var current_health := 3
+var magnet := 10.0
 
-var follow_speed := 2.0
+var follow_speed := 5.0
 var offset = Vector2(20, 15)
+
 
 func _ready():
 	$AnimatedSprite2D.play("default")

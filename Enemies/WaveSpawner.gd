@@ -2,6 +2,7 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @export var on_death: PackedScene
+@export var coin_scene: PackedScene
 @export var enemies_per_wave: int = 5
 @export var time_between_spawns: float = 0.5
 @export var time_between_waves: float = 3.0
@@ -53,7 +54,8 @@ func spawn_enemy():
 	#Generic Config
 	var config = {
 		"speed": enemy_speed,
-		"on_death": on_death
+		"on_death": on_death,
+		"coin_scene": coin_scene
 	}
 	
 	if "initialize" in enemy:

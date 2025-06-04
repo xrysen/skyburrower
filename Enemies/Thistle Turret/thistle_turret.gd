@@ -6,6 +6,7 @@ extends Node2D
 @onready var dust = get_node("DustBurst")
 
 @export var player_path: NodePath
+@export var coin_scene: PackedScene
 @onready var player = get_node(player_path)
 
 # Pod
@@ -118,6 +119,10 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	if coin_scene:
+		var coin = coin_scene.instantiate()
+		coin.global_position = global_position 
+		get_parent().add_child(coin) 
 	queue_free()
 	
 func _on_fade_timeout():

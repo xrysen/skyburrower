@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
 @export var speed: float = 100.0
+@export var coin_scene: PackedScene
 var max_health: int = 5
 var current_health: int
 var fade_timer: Timer
+
+var bob_timer := 0.0
+var bob_interval := 2.5
+var bob_distance := 6.0
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -30,6 +35,10 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	if coin_scene:
+		var coin = coin_scene.instantiate()
+		coin.global_position = global_position
+		get_parent().add_child(coin) 
 	queue_free()
 
 func _on_fade_timeout():
@@ -37,6 +46,16 @@ func _on_fade_timeout():
 
 func _process(delta):
 	position.x -= speed * delta
+	
+	bob_timer += delta
+	if bob_timer >= bob_interval:
+		bob_timer = 0.0
+		random_bob()
+			
+func random_bob():
+	var offset = randf_range(-bob_distance, bob_distance)
+	var tween = create_tween()
+	tween.tween_property(self, "position:y", position.y + offset, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 var damage_cooldown = false
 
@@ -53,3 +72,9 @@ func flash_on_hit():
 	modulate = Color(1, 0.5, 0.5) 
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1,1,1)
+	
+func initialize(config: Dictionary):
+	if config.has("speed"):
+		speed = config["speed"]
+	if config.has("coin_scene"):
+		coin_scene = config["coin_scene"]

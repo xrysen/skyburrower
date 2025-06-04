@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 @export var on_death: PackedScene
+@export var coin_scene: PackedScene
 var max_health: int = 5
 var current_health: int
 var fade_timer: Timer
@@ -35,6 +36,10 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	if coin_scene:
+		var coin = coin_scene.instantiate()
+		coin.global_position = global_position 
+		get_parent().add_child(coin) 
 	for i in range(12):
 		var spore = on_death.instantiate()
 		var angle = (TAU / 12) * i + randf_range(-0.2, 0.2)
@@ -77,3 +82,5 @@ func initialize(config: Dictionary):
 		speed = config["speed"]
 	if config.has("on_death"):
 		on_death = config["on_death"]
+	if config.has("coin_scene"):
+		coin_scene = config["coin_scene"]

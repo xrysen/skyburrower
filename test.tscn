@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkft4pc1ton25"]
+[gd_scene load_steps=17 format=3 uid="uid://bkft4pc1ton25"]
 
 [ext_resource type="Texture2D" uid="uid://c4ttclot1k2s4" path="res://Levels/Level 1/CloudsBack.png" id="1_37kl0"]
 [ext_resource type="Texture2D" uid="uid://do1ib11ijuj6v" path="res://Levels/Level 1/CloudsFront.png" id="2_8uh7m"]
@@ -12,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="11_5tkv4"]
 [ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="12_5tkv4"]
+[ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="12_mhym6"]
 [ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="13_0m0f1"]
 [ext_resource type="PackedScene" uid="uid://bn1cm1mf8h5jf" path="res://Enemies/Thistle Turret/ThistleTurret.tscn" id="14_b0q6j"]
+[ext_resource type="PackedScene" uid="uid://co7ml72e4y3dk" path="res://Items/Coins/BigCoin/BigCoin.tscn" id="16_a3se8"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -66,11 +68,15 @@ texture = ExtResource("4_ppyta")
 
 [node name="Flutternat Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("8_ehkex")
+coin_scene = ExtResource("12_mhym6")
+enemies_per_wave = 3
+max_waves = 10
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("10_00tp4")]
 position = Vector2(-257, 156)
 enemy_scene = ExtResource("12_5tkv4")
 on_death = ExtResource("13_0m0f1")
+coin_scene = ExtResource("12_mhym6")
 enemies_per_wave = 3
 time_between_spawns = 3.0
 max_waves = 6
@@ -79,7 +85,9 @@ max_waves = 6
 position = Vector2(362, 295)
 spawn_delay = 10.0
 player_path = NodePath("../Meadow")
+coin_scene = ExtResource("16_a3se8")
 
 [node name="ThistleTurret2" parent="." instance=ExtResource("14_b0q6j")]
 position = Vector2(526, 295)
 player_path = NodePath("../Meadow")
+coin_scene = ExtResource("16_a3se8")
