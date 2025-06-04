@@ -64,10 +64,8 @@ repeat_times = 15
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
 texture = ExtResource("4_ppyta")
 
-[node name="Flutternat Spawn" parent="." instance=ExtResource("10_00tp4")]
+[node name="Flutternat Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("8_ehkex")
-enemy_speed = 50.0
-max_waves = 3
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("10_00tp4")]
 position = Vector2(-257, 156)

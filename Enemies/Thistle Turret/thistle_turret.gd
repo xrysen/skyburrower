@@ -16,10 +16,24 @@ extends Node2D
 var current_direction := ""
 var shoot_timer := 0.0
 
+var max_health: int = 5
+var current_health: int
+var fade_timer: Timer
+
 func _ready():
 	visual_root.position.y = 64  # Start underground
 	spawn_after_delay()
 	set_process(false)
+	$HealthBar.visible = false
+	current_health = max_health
+	$HealthBar.max_value = max_health
+	$HealthBar.value = current_health
+	fade_timer = Timer.new()
+	fade_timer.wait_time = 0.5
+	fade_timer.one_shot = true
+	fade_timer.connect("timeout", Callable(self, "_on_fade_timeout"))
+	add_child(fade_timer)
+	
 
 func spawn_after_delay():
 	await get_tree().create_timer(spawn_delay).timeout
@@ -89,3 +103,27 @@ func shoot_pod():
 		pod.set_velocity(direction * pod_speed)
 	else:
 		pod.velocity = direction * pod_speed
+		
+
+func take_damage(amount: int):
+	current_health -= amount
+	modulate = Color(1, 0.5, 0.5)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color(1, 1, 1)
+	$HealthBar.value = current_health
+	$HealthBar.visible = true
+	fade_timer.start()
+
+	if current_health <= 0:
+		die()
+
+func die():
+	queue_free()
+	
+func _on_fade_timeout():
+	$HealthBar.visible = false
+	
+func flash_on_hit():
+	modulate = Color(1, 0.5, 0.5) 
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color(1,1,1)

@@ -56,7 +56,7 @@ script = ExtResource("2_ag5c4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_diefg")
-frame_progress = 0.653136
+frame_progress = 0.330301
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
