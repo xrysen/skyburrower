@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh4y0le6mua55"]
+
+[ext_resource type="Texture2D" uid="uid://ce1vk75tdiimu" path="res://Enemies/Thistle Turret/pod.png" id="1_0iafm"]
+[ext_resource type="Script" uid="uid://bqb8xdprq1bii" path="res://Enemies/Thistle Turret/pod.gd" id="1_bblwb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bblwb"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_bblwb")
+speed = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0iafm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bblwb")

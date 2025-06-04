@@ -80,6 +80,8 @@ max_waves = 6
 [node name="ThistleTurret" parent="." instance=ExtResource("14_b0q6j")]
 position = Vector2(362, 295)
 spawn_delay = 10.0
+player_path = NodePath("../Meadow")
 
 [node name="ThistleTurret2" parent="." instance=ExtResource("14_b0q6j")]
 position = Vector2(526, 295)
+player_path = NodePath("../Meadow")

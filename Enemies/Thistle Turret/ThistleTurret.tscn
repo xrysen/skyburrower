@@ -1,14 +1,121 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn1cm1mf8h5jf"]
+[gd_scene load_steps=16 format=3 uid="uid://bn1cm1mf8h5jf"]
 
 [ext_resource type="Script" uid="uid://bagxstgbr3w11" path="res://Enemies/Thistle Turret/thistle_turret.gd" id="1_kh00n"]
-[ext_resource type="Texture2D" uid="uid://b5to0lwjgmsj6" path="res://Enemies/Thistle Turret/thistle.png" id="1_rhbnb"]
+[ext_resource type="Texture2D" uid="uid://d3h8fyw4e4vmb" path="res://Enemies/Thistle Turret/thistle-sheet.png" id="2_hwp4f"]
+[ext_resource type="Texture2D" uid="uid://cpuox5mdd4r3d" path="res://Enemies/Thistle Turret/dust.png" id="3_hwp4f"]
+[ext_resource type="PackedScene" uid="uid://dh4y0le6mua55" path="res://Enemies/Thistle Turret/pod.tscn" id="3_ul058"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul058"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie08l"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwa1g"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h72pf"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u0cf"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iebt5"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4mb4"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yfa4"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd6dj"]
+atlas = ExtResource("2_hwp4f")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jnch1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul058")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie08l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwa1g")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h72pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u0cf")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iebt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4mb4")
+}],
+"loop": true,
+"name": &"up_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yfa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd6dj")
+}],
+"loop": true,
+"name": &"up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kh00n"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+initial_velocity_max = 109.2
+gravity = Vector3(0, 300, 0)
 
 [node name="ThistleTurret" type="Node2D"]
 script = ExtResource("1_kh00n")
+pod_scene = ExtResource("3_ul058")
 
 [node name="VisualRoot" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="VisualRoot"]
-texture = ExtResource("1_rhbnb")
-centered = false
-offset = Vector2(0, -32)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VisualRoot"]
+sprite_frames = SubResource("SpriteFrames_jnch1")
+animation = &"up_right"
+
+[node name="DustBurst" type="GPUParticles2D" parent="."]
+position = Vector2(0, 5)
+emitting = false
+amount = 30
+texture = ExtResource("3_hwp4f")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_kh00n")
