@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var amount: int
 var speed: float = 100.0
 var player: CharacterBody2D
 
@@ -28,5 +29,5 @@ func _process(delta):
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("player"):
 		# Play noise
-		# increase total coins
+		Global.add_coins(1)
 		queue_free()

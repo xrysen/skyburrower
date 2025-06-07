@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5rnf6hl14e7x"]
+[gd_scene load_steps=3 format=3 uid="uid://c5rnf6hl14e7x"]
 
 [ext_resource type="Script" uid="uid://b8mj4hvc1ppi" path="res://UI/UI.gd" id="1_dajm1"]
+[ext_resource type="Texture2D" uid="uid://dcfawvc4rrdn2" path="res://UI/ui.png" id="2_dajm1"]
 
 [node name="Ui" type="Control"]
 z_index = 10
@@ -8,7 +9,41 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dajm1")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 45.0
+offset_top = 8.0
+offset_right = 125.0
+offset_bottom = 35.0
+columns = 5
+
+[node name="CoinLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 40.0
+offset_right = 102.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+text = "9999"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(70, 31)
+texture = ExtResource("2_dajm1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 4.0
+offset_right = 128.0
+offset_bottom = 39.0
+color = Color(0, 0, 0, 0.231373)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 39.0
+offset_right = 90.0
+offset_bottom = 55.0
+color = Color(0, 0, 0, 0.231373)

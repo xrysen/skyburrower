@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
-@export var fire_rate := 0.2
-@export var strength := 1
+@export var fire_rate := Global.fire_rate
+@export var strength := Global.strength
 var fire_timer := 0.0
-var maxHealth := 3
-var current_health := 3
-var magnet := 10.0
+var maxHealth := Global.max_health
+var current_health := Global.max_health
+var magnet := Global.magnet
 
 var follow_speed := 5.0
 var offset = Vector2(20, 15)

@@ -99,7 +99,5 @@ spawn_delay = 15.0
 player_path = NodePath("../Meadow")
 coin_scene = ExtResource("16_a3se8")
 
-[node name="Sapshell Spawner" parent="." instance=ExtResource("10_00tp4")]
+[node name="Sapshell" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("17_uty7l")
-coin_scene = ExtResource("16_a3se8")
-enemies_per_wave = 2

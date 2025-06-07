@@ -13,7 +13,6 @@ var current_wave = 0
 var enemies_spawned = 0
 
 func _ready():
-	print("Spawning")
 	start_wave()
 	
 func start_wave():
@@ -50,12 +49,19 @@ func spawn_enemy():
 	last_spawn_y = y  # Store for next spawn
 	var x = screen_size.x + 50  # Always just off the right side
 	enemy.global_position = Vector2(x, y)
+
+	# Define vertical movement bounds (just within screen)
+	var vertical_bounds = {
+		"top": 50.0,
+		"bottom": screen_size.y - 50.0
+	}
 	
-	#Generic Config
+	# Generic config
 	var config = {
 		"speed": enemy_speed,
 		"on_death": on_death,
-		"coin_scene": coin_scene
+		"coin_scene": coin_scene,
+		"vertical_bounds": vertical_bounds
 	}
 	
 	if "initialize" in enemy:
