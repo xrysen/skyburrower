@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ttclot1k2s4"
-path="res://.godot/imported/CloudsBack.png-459bee42d8444e8b250682fc05eeb759.ctex"
+uid="uid://bdsw158ua1neg"
+path="res://.godot/imported/lvl1-4.png-fa29387e5cbf8d1ea46f1b064a4502da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Level 1/CloudsBack.png"
-dest_files=["res://.godot/imported/CloudsBack.png-459bee42d8444e8b250682fc05eeb759.ctex"]
+source_file="res://Levels/Level 1/lvl1-4.png"
+dest_files=["res://.godot/imported/lvl1-4.png-fa29387e5cbf8d1ea46f1b064a4502da.ctex"]
 
 [params]
 

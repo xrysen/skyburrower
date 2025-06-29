@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://bkft4pc1ton25"]
 
-[ext_resource type="Texture2D" uid="uid://c4ttclot1k2s4" path="res://Levels/Level 1/CloudsBack.png" id="1_37kl0"]
-[ext_resource type="Texture2D" uid="uid://do1ib11ijuj6v" path="res://Levels/Level 1/CloudsFront.png" id="2_8uh7m"]
-[ext_resource type="Texture2D" uid="uid://dtjauduqm1ter" path="res://Levels/Level 1/BGBack.png" id="3_6uqi0"]
-[ext_resource type="Texture2D" uid="uid://4a2mdhkg101f" path="res://Levels/Level 1/BGFront.png" id="4_ppyta"]
+[ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="4_uty7l"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_ykrsh"]
+[ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="5_45l4g"]
 [ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="5_g14j6"]
+[ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="5_uty7l"]
 [ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="6_vbegm"]
 [ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="8_ehkex"]
+[ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="9_uty7l"]
 [ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="10_00tp4"]
 [ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="11_5tkv4"]
@@ -25,47 +25,48 @@ heart_scene = ExtResource("11_5tkv4")
 player_path = NodePath("../Meadow")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_offset = Vector2(0, -50)
+scroll_offset = Vector2(2, -45)
 repeat_size = Vector2(512, 0)
 autoscroll = Vector2(-70, 0)
 repeat_times = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(310, 206)
-texture = ExtResource("1_37kl0")
+texture = ExtResource("4_uty7l")
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
-repeat_size = Vector2(512, 0)
+scroll_offset = Vector2(2, 5)
+repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-80, 0)
 repeat_times = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
-position = Vector2(365, 161)
-scale = Vector2(1, 0.9625)
-texture = ExtResource("2_8uh7m")
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("5_45l4g")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
-scroll_offset = Vector2(255, 156)
+scroll_offset = Vector2(-255, 161)
 repeat_size = Vector2(512, 0)
 autoscroll = Vector2(-100, 0)
 repeat_times = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
-texture = ExtResource("3_6uqi0")
+texture = ExtResource("5_uty7l")
 
 [node name="Meadow" parent="." instance=ExtResource("4_ykrsh")]
-position = Vector2(75, 90)
+position = Vector2(77, 95)
 script = ExtResource("5_g14j6")
 bullet_scene = ExtResource("6_vbegm")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
-scroll_offset = Vector2(255, 156)
-repeat_size = Vector2(512, 0)
+scroll_offset = Vector2(-255, 151)
+repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-200, 0)
 repeat_times = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
-texture = ExtResource("4_ppyta")
+texture = ExtResource("9_uty7l")
 
 [node name="Flutternat Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("8_ehkex")
@@ -102,4 +103,5 @@ coin_scene = ExtResource("16_a3se8")
 [node name="Sapshell Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("17_uty7l")
 coin_scene = ExtResource("16_a3se8")
-enemies_per_wave = 2
+enemies_per_wave = 0
+max_waves = 0

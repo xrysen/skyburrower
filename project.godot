@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Skyburrower"
-run/main_scene="res://test.tscn"
+run/main_scene="uid://bkft4pc1ton25"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ Global="*res://Global/Global.gd"
 
 [display]
 
-window/size/viewport_width=620
+window/size/viewport_width=640
 window/size/viewport_height=320
 window/stretch/mode="canvas_items"
 

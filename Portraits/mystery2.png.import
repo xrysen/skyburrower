@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4a2mdhkg101f"
-path="res://.godot/imported/BGFront.png-8a2e8d0af6120aa35b78b6112bd373d9.ctex"
+uid="uid://bhwhm678kyidh"
+path="res://.godot/imported/mystery2.png-f3217523550b5f3c1466bd11efdef3f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Level 1/BGFront.png"
-dest_files=["res://.godot/imported/BGFront.png-8a2e8d0af6120aa35b78b6112bd373d9.ctex"]
+source_file="res://Portraits/mystery2.png"
+dest_files=["res://.godot/imported/mystery2.png-f3217523550b5f3c1466bd11efdef3f7.ctex"]
 
 [params]
 
