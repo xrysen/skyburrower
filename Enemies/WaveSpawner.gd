@@ -8,11 +8,13 @@ extends Node
 @export var time_between_waves: float = 3.0
 @export var enemy_speed: float = 100.0
 @export var max_waves: int = 5
+@export var spawn_time_start: float = 0.0
 
 var current_wave = 0
 var enemies_spawned = 0
 
 func _ready():
+	await get_tree().create_timer(spawn_time_start).timeout
 	start_wave()
 	
 func start_wave():

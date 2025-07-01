@@ -25,17 +25,17 @@ heart_scene = ExtResource("11_5tkv4")
 player_path = NodePath("../Meadow")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_offset = Vector2(2, -45)
-repeat_size = Vector2(512, 0)
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-70, 0)
-repeat_times = 50
+repeat_times = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(310, 206)
 texture = ExtResource("4_uty7l")
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
-scroll_offset = Vector2(2, 5)
+scroll_offset = Vector2(-640, 23)
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-80, 0)
 repeat_times = 20
@@ -46,7 +46,7 @@ scale = Vector2(1, 0.962)
 texture = ExtResource("5_45l4g")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
-scroll_offset = Vector2(-255, 161)
+scroll_offset = Vector2(-257, 179)
 repeat_size = Vector2(512, 0)
 autoscroll = Vector2(-100, 0)
 repeat_times = 15
@@ -60,7 +60,7 @@ script = ExtResource("5_g14j6")
 bullet_scene = ExtResource("6_vbegm")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
-scroll_offset = Vector2(-255, 151)
+scroll_offset = Vector2(-259, 180)
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-200, 0)
 repeat_times = 15
@@ -71,8 +71,9 @@ texture = ExtResource("9_uty7l")
 [node name="Flutternat Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("8_ehkex")
 coin_scene = ExtResource("12_mhym6")
-enemies_per_wave = 2
-max_waves = 4
+enemies_per_wave = 3
+max_waves = 8
+spawn_time_start = 2.0
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("10_00tp4")]
 position = Vector2(-257, 156)
@@ -82,26 +83,30 @@ coin_scene = ExtResource("12_mhym6")
 enemies_per_wave = 1
 time_between_spawns = 0.2
 max_waves = 6
+spawn_time_start = 15.0
 
 [node name="ThistleTurret" parent="." instance=ExtResource("14_b0q6j")]
-position = Vector2(362, 295)
-spawn_delay = 10.0
+position = Vector2(374, 337)
+spawn_delay = 15.0
 player_path = NodePath("../Meadow")
 coin_scene = ExtResource("16_a3se8")
 
 [node name="ThistleTurret2" parent="." instance=ExtResource("14_b0q6j")]
-position = Vector2(526, 295)
+position = Vector2(536, 336)
+spawn_delay = 18.0
 player_path = NodePath("../Meadow")
 coin_scene = ExtResource("16_a3se8")
 
 [node name="ThistleTurret3" parent="." instance=ExtResource("14_b0q6j")]
-position = Vector2(276, 298)
-spawn_delay = 15.0
+position = Vector2(277, 337)
+spawn_delay = 25.0
 player_path = NodePath("../Meadow")
 coin_scene = ExtResource("16_a3se8")
 
 [node name="Sapshell Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("17_uty7l")
 coin_scene = ExtResource("16_a3se8")
-enemies_per_wave = 0
-max_waves = 0
+enemies_per_wave = 2
+enemy_speed = 50.0
+max_waves = 2
+spawn_time_start = 20.0

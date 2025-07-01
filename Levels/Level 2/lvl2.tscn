@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://baq21irju2ias"]
+
+[ext_resource type="Texture2D" uid="uid://dr2xgbn643lle" path="res://Levels/Level 2/sky1.png" id="1_ky35d"]
+[ext_resource type="Script" uid="uid://mjlr0u3k7ugj" path="res://Levels/Level 2/lightning.gd" id="1_r16hl"]
+[ext_resource type="Texture2D" uid="uid://bqutbjsfbx67j" path="res://Levels/Level 2/sky2.png" id="2_vhufb"]
+[ext_resource type="Texture2D" uid="uid://dlcprnwdwg1hf" path="res://Levels/Level 2/rocks2.png" id="3_dgl6y"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_r16hl"]
+[ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="5_stwvu"]
+[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="6_42spg"]
+[ext_resource type="Texture2D" uid="uid://0lf614gwewa4" path="res://Levels/Level 2/river1.png" id="7_chyv4"]
+[ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://rain.tscn" id="7_ky35d"]
+[ext_resource type="Texture2D" uid="uid://dkdnpm4gm266t" path="res://Levels/Level 2/river2.png" id="8_r16hl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stwvu"]
+atlas = ExtResource("7_chyv4")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42spg"]
+atlas = ExtResource("8_r16hl")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqgb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stwvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42spg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Lvl2" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 100
+script = ExtResource("1_r16hl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("1_ky35d")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 23)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("2_vhufb")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 179)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture = ExtResource("3_dgl6y")
+
+[node name="Meadow" parent="." instance=ExtResource("4_r16hl")]
+position = Vector2(0, 1)
+script = ExtResource("5_stwvu")
+bullet_scene = ExtResource("6_42spg")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 180)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-150, 0)
+repeat_times = 15
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D4"]
+sprite_frames = SubResource("SpriteFrames_tqgb3")
+autoplay = "default"
+frame_progress = 0.811377
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("7_ky35d")]
+position = Vector2(345, 101)

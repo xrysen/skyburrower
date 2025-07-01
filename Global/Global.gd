@@ -1,7 +1,7 @@
 extends Node
 
 var coin_count: int = 0
-var fire_rate: float = 0.2
+var fire_rate: float = 0.3
 var strength: int = 1
 var max_health: int = 10
 var current_health: int = 10
