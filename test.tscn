@@ -71,7 +71,6 @@ texture = ExtResource("9_uty7l")
 [node name="Flutternat Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("8_ehkex")
 coin_scene = ExtResource("12_mhym6")
-enemies_per_wave = 3
 max_waves = 8
 spawn_time_start = 2.0
 
@@ -80,7 +79,6 @@ position = Vector2(-257, 156)
 enemy_scene = ExtResource("12_5tkv4")
 on_death = ExtResource("13_0m0f1")
 coin_scene = ExtResource("12_mhym6")
-enemies_per_wave = 1
 time_between_spawns = 0.2
 max_waves = 6
 spawn_time_start = 15.0
@@ -106,7 +104,6 @@ coin_scene = ExtResource("16_a3se8")
 [node name="Sapshell Spawner" parent="." instance=ExtResource("10_00tp4")]
 enemy_scene = ExtResource("17_uty7l")
 coin_scene = ExtResource("16_a3se8")
-enemies_per_wave = 2
 enemy_speed = 50.0
 max_waves = 2
 spawn_time_start = 20.0

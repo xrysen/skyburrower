@@ -6,6 +6,7 @@ var strength: int = 1
 var max_health: int = 10
 var current_health: int = 10
 var magnet: float = 100.0
+var luck: int = 1
  
 signal coins_changed
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy6nd1on2j8u3"]
+
+[ext_resource type="Script" uid="uid://kd7onpfvvuti" path="res://Effects/Fade.gd" id="1_udcu3"]
+
+[node name="Fade" type="CanvasLayer"]
+script = ExtResource("1_udcu3")
+
+[node name="FadeRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

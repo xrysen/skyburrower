@@ -3,7 +3,8 @@ extends Node
 @export var enemy_scene: PackedScene
 @export var on_death: PackedScene
 @export var coin_scene: PackedScene
-@export var enemies_per_wave: int = 5
+@export var min_enemies_per_wave: int = 1
+@export var max_enemies_per_wave: int = 5
 @export var time_between_spawns: float = 0.5
 @export var time_between_waves: float = 3.0
 @export var enemy_speed: float = 100.0
@@ -20,14 +21,15 @@ func _ready():
 func start_wave():
 	enemies_spawned = 0
 	current_wave +=1
-	spawn_enemies()
+	var enemies_this_wave = randi_range(min_enemies_per_wave, max_enemies_per_wave)
+	spawn_enemies(enemies_this_wave)
 	
-func spawn_enemies():
-	if enemies_spawned < enemies_per_wave and current_wave <= max_waves:
+func spawn_enemies(enemies_this_wave: int):
+	if enemies_spawned < enemies_this_wave and current_wave <= max_waves:
 		spawn_enemy()
 		enemies_spawned += 1
 		await get_tree().create_timer(time_between_spawns).timeout
-		spawn_enemies()
+		spawn_enemies(enemies_this_wave)
 	else:
 		await get_tree().create_timer(time_between_waves).timeout
 		start_wave()

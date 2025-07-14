@@ -80,7 +80,7 @@ repeat_times = 15
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D4"]
 sprite_frames = SubResource("SpriteFrames_tqgb3")
 autoplay = "default"
-frame_progress = 0.811377
+frame_progress = 0.110599
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("7_ky35d")]
 position = Vector2(345, 101)

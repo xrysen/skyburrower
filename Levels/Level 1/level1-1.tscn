@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://bjj0h3f0yd6xf"]
+
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="1_lpd3d"]
+[ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="1_rmpoc"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="2_1fkka"]
+[ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="2_8m5c3"]
+[ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="3_2s83g"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_43edm"]
+[ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="5_6yn58"]
+[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="6_lpd3d"]
+[ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="7_1fkka"]
+[ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="8_43edm"]
+[ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="9_6yn58"]
+[ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="10_lpd3d"]
+
+[node name="Level1-1" type="Node2D"]
+
+[node name="Ui" parent="." instance=ExtResource("1_lpd3d")]
+heart_scene = ExtResource("2_1fkka")
+player_path = NodePath("../Meadow")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("1_rmpoc")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 23)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("2_8m5c3")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-257, 179)
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture = ExtResource("3_2s83g")
+
+[node name="Meadow" parent="." instance=ExtResource("4_43edm")]
+position = Vector2(77, 95)
+script = ExtResource("5_6yn58")
+bullet_scene = ExtResource("6_lpd3d")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-259, 180)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-200, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+texture = ExtResource("7_1fkka")
+
+[node name="Flutternat Spawner" parent="." instance=ExtResource("8_43edm")]
+position = Vector2(-259, 180)
+enemy_scene = ExtResource("9_6yn58")
+coin_scene = ExtResource("10_lpd3d")
+time_between_waves = 5.0
+spawn_time_start = 2.0

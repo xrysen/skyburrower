@@ -1,0 +1,99 @@
+[gd_scene load_steps=17 format=3 uid="uid://cte0g6a4whguh"]
+
+[ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="1_kcba3"]
+[ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="2_uqxjk"]
+[ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="3_i4eu0"]
+[ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="4_4xi3u"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="5_iewqy"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="6_8oulw"]
+[ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="7_gsr83"]
+[ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="8_yo8id"]
+[ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="9_g2sow"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="10_pmhmy"]
+[ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="11_o0ty3"]
+[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="12_m47m6"]
+[ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="13_d7fo5"]
+[ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="14_t4jjr"]
+[ext_resource type="PackedScene" uid="uid://bn1cm1mf8h5jf" path="res://Enemies/Thistle Turret/ThistleTurret.tscn" id="15_i4eu0"]
+[ext_resource type="PackedScene" uid="uid://co7ml72e4y3dk" path="res://Items/Coins/BigCoin/BigCoin.tscn" id="16_4xi3u"]
+
+[node name="Level1-1" type="Node2D"]
+
+[node name="Sporespinner Spawn" parent="." instance=ExtResource("1_kcba3")]
+position = Vector2(-516, 336)
+enemy_scene = ExtResource("2_uqxjk")
+on_death = ExtResource("3_i4eu0")
+coin_scene = ExtResource("4_4xi3u")
+max_enemies_per_wave = 3
+time_between_spawns = 5.0
+spawn_time_start = 10.0
+
+[node name="Ui" parent="." instance=ExtResource("5_iewqy")]
+heart_scene = ExtResource("6_8oulw")
+player_path = NodePath("../Meadow")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("7_gsr83")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 23)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("8_yo8id")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-257, 179)
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture = ExtResource("9_g2sow")
+
+[node name="Meadow" parent="." instance=ExtResource("10_pmhmy")]
+position = Vector2(77, 95)
+script = ExtResource("11_o0ty3")
+bullet_scene = ExtResource("12_m47m6")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-259, 180)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-200, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+texture = ExtResource("13_d7fo5")
+
+[node name="Flutternat Spawner" parent="." instance=ExtResource("1_kcba3")]
+position = Vector2(-259, 180)
+enemy_scene = ExtResource("14_t4jjr")
+coin_scene = ExtResource("4_4xi3u")
+min_enemies_per_wave = 4
+max_enemies_per_wave = 8
+time_between_waves = 8.0
+max_waves = 8
+spawn_time_start = 2.0
+
+[node name="ThistleTurret" parent="." instance=ExtResource("15_i4eu0")]
+position = Vector2(374, 337)
+spawn_delay = 15.0
+player_path = NodePath("../Meadow")
+coin_scene = ExtResource("16_4xi3u")
+
+[node name="ThistleTurret2" parent="." instance=ExtResource("15_i4eu0")]
+position = Vector2(451, 337)
+spawn_delay = 30.0
+player_path = NodePath("../Meadow")
+coin_scene = ExtResource("16_4xi3u")
