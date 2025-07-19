@@ -12,9 +12,9 @@ var small_coin_scene := preload("res://Items/Coins/SmallCoin/SmallCoin.tscn")
 var spawning_coins = true
 
 func _ready():
-	var screen_size = get_viewport().get_visible_rect().size
-	var new_mouse_pos = Vector2(0, screen_size.y/2)
-	Input.warp_mouse(new_mouse_pos)
+	var player = get_node("Meadow")
+	player.player_died.connect(_on_player_died)
+	
 	start_level_timer()
 	add_child(fade)
 	spawn_coins_loop()
@@ -33,10 +33,14 @@ func create_timer(time: float) -> Timer:
 	timer.start()
 	return timer
 
+func _on_player_died():
+	end_level()
+
 func end_level():
-	fade.fade_out(1.5)
+	await fade.fade_out(1.5)
 	spawning_coins = false
 	emit_signal("level_ended")
+	get_tree().change_scene_to_file("res://WorldMap/worldMap.tscn")
 	
 func spawn_coins_loop() -> void:
 	while spawning_coins:
@@ -50,7 +54,7 @@ func spawn_random_coins():
 	var luck = (raw_luck - 1.0) / 9.0  # normalize to 0.0–1.0
 
 	# Scale base coin count: 2–7 coins at min luck to high luck
-	var min_coins = int(lerp(2, 10, luck))  # or whatever range you prefer
+	var min_coins = int(lerp(2, 10, luck)) 
 	var max_coins = int(lerp(4, 20, luck))
 
 	var coin_count = randi_range(min_coins, max_coins)

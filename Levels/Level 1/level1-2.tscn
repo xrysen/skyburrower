@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dq24g7ogri5vo"]
+[gd_scene load_steps=16 format=3 uid="uid://dq24g7ogri5vo"]
 
 [ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_7xosg"]
 [ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="1_45y3k"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="3_e6fwy"]
 [ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="3_pvhww"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_5n56v"]
-[ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="5_ahnte"]
-[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="6_pvhww"]
 [ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="7_xv28k"]
 [ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="8_7xosg"]
 [ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="9_npqo8"]
@@ -21,6 +19,8 @@
 [node name="Level1-2" type="Node2D"]
 script = ExtResource("1_7xosg")
 level_duration = 60.0
+end_delay = null
+coin_spawn_interval_range = null
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("8_7xosg")]
 position = Vector2(-516, 336)
@@ -67,8 +67,6 @@ texture = ExtResource("3_e6fwy")
 
 [node name="Meadow" parent="." instance=ExtResource("4_5n56v")]
 position = Vector2(77, 95)
-script = ExtResource("5_ahnte")
-bullet_scene = ExtResource("6_pvhww")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-259, 180)

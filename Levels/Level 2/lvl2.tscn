@@ -5,11 +5,95 @@
 [ext_resource type="Texture2D" uid="uid://bqutbjsfbx67j" path="res://Levels/Level 2/sky2.png" id="2_vhufb"]
 [ext_resource type="Texture2D" uid="uid://dlcprnwdwg1hf" path="res://Levels/Level 2/rocks2.png" id="3_dgl6y"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_r16hl"]
-[ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="5_stwvu"]
 [ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="6_42spg"]
 [ext_resource type="Texture2D" uid="uid://0lf614gwewa4" path="res://Levels/Level 2/river1.png" id="7_chyv4"]
 [ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://rain.tscn" id="7_ky35d"]
 [ext_resource type="Texture2D" uid="uid://dkdnpm4gm266t" path="res://Levels/Level 2/river2.png" id="8_r16hl"]
+
+[sub_resource type="GDScript" id="GDScript_a3se8"]
+script/source = "extends CharacterBody2D
+
+@export var bullet_scene: PackedScene
+@export var fire_rate := Global.fire_rate
+@export var strength := Global.strength
+var fire_timer := 0.0
+var maxHealth := Global.max_health
+var current_health := Global.max_health
+var magnet := Global.magnet
+
+var follow_speed := 5.0
+var offset = Vector2(20, 15)
+
+signal player_died
+
+
+func _ready():
+	$AnimatedSprite2D.play(\"default\")
+
+	
+func _process(delta):
+	fire_timer -= delta
+	if fire_timer <= 0:
+		fire_bullet()
+		fire_timer = fire_rate
+		
+	var mouse_pos = get_global_mouse_position()
+	var screen_size = get_viewport_rect().size
+	
+	var clamped_x = clamp(mouse_pos.x, 0, screen_size.x)
+	var clamped_y = clamp(mouse_pos.y, 0, screen_size.y)
+	
+	global_position = global_position.lerp(Vector2(clamped_x, clamped_y), follow_speed * delta)
+	
+func fire_bullet():
+	var bullet = bullet_scene.instantiate()
+	get_parent().add_child(bullet)
+	bullet.damage = strength
+	
+	bullet.global_position = global_position + offset
+
+signal health_changed
+
+func take_damage(amount: int):
+	current_health = max(current_health - amount, 0)
+	emit_signal(\"health_changed\")
+	flash_on_hit()
+	
+	if current_health == 0:
+		play_death_effect()
+		#emit_signal(\"player_died\")
+	
+func play_death_effect():
+	var tween := get_tree().create_tween()
+
+	# Stop the animation
+	if $AnimatedSprite2D:
+		$AnimatedSprite2D.stop()
+
+	# Spin 2 full turns (720° = TAU * 2 radians)
+	tween.tween_property(self, \"rotation\", rotation + TAU * 2, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(self, \"scale\", Vector2.ZERO, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, \"modulate:a\", 0.0, 1.0)
+	
+	tween.tween_callback(Callable(self, \"on_death_effect_done\"))
+
+func on_death_effect_done():
+	emit_signal(\"player_died\")
+	
+
+func flash_on_hit(times: int = 6, interval: float = 0.1) -> void:
+	for i in range(times):
+		visible = false
+		await get_tree().create_timer(interval).timeout
+		visible = true
+		await get_tree().create_timer(interval).timeout
+
+
+	
+	
+	
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stwvu"]
 atlas = ExtResource("7_chyv4")
@@ -68,7 +152,7 @@ texture = ExtResource("3_dgl6y")
 
 [node name="Meadow" parent="." instance=ExtResource("4_r16hl")]
 position = Vector2(0, 1)
-script = ExtResource("5_stwvu")
+script = SubResource("GDScript_a3se8")
 bullet_scene = ExtResource("6_42spg")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]

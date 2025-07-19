@@ -82,3 +82,15 @@ offset_right = 106.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(1, 0.772549, 0.184314, 1)
 text = "9999"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.129412, 0.184314, 0.231373, 1)
