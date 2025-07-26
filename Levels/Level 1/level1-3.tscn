@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cte0g6a4whguh"]
+[gd_scene load_steps=15 format=3 uid="uid://cte0g6a4whguh"]
 
 [ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="1_kcba3"]
 [ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="2_uqxjk"]
@@ -10,96 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="8_yo8id"]
 [ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="9_g2sow"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="10_pmhmy"]
-[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="12_m47m6"]
 [ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="13_d7fo5"]
 [ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="14_t4jjr"]
 [ext_resource type="PackedScene" uid="uid://bn1cm1mf8h5jf" path="res://Enemies/Thistle Turret/ThistleTurret.tscn" id="15_i4eu0"]
 [ext_resource type="PackedScene" uid="uid://co7ml72e4y3dk" path="res://Items/Coins/BigCoin/BigCoin.tscn" id="16_4xi3u"]
-
-[sub_resource type="GDScript" id="GDScript_a3se8"]
-script/source = "extends CharacterBody2D
-
-@export var bullet_scene: PackedScene
-@export var fire_rate := Global.fire_rate
-@export var strength := Global.strength
-var fire_timer := 0.0
-var maxHealth := Global.max_health
-var current_health := Global.max_health
-var magnet := Global.magnet
-
-var follow_speed := 5.0
-var offset = Vector2(20, 15)
-
-signal player_died
-
-
-func _ready():
-	$AnimatedSprite2D.play(\"default\")
-
-	
-func _process(delta):
-	fire_timer -= delta
-	if fire_timer <= 0:
-		fire_bullet()
-		fire_timer = fire_rate
-		
-	var mouse_pos = get_global_mouse_position()
-	var screen_size = get_viewport_rect().size
-	
-	var clamped_x = clamp(mouse_pos.x, 0, screen_size.x)
-	var clamped_y = clamp(mouse_pos.y, 0, screen_size.y)
-	
-	global_position = global_position.lerp(Vector2(clamped_x, clamped_y), follow_speed * delta)
-	
-func fire_bullet():
-	var bullet = bullet_scene.instantiate()
-	get_parent().add_child(bullet)
-	bullet.damage = strength
-	
-	bullet.global_position = global_position + offset
-
-signal health_changed
-
-func take_damage(amount: int):
-	current_health = max(current_health - amount, 0)
-	emit_signal(\"health_changed\")
-	flash_on_hit()
-	
-	if current_health == 0:
-		play_death_effect()
-		#emit_signal(\"player_died\")
-	
-func play_death_effect():
-	var tween := get_tree().create_tween()
-
-	# Stop the animation
-	if $AnimatedSprite2D:
-		$AnimatedSprite2D.stop()
-
-	# Spin 2 full turns (720° = TAU * 2 radians)
-	tween.tween_property(self, \"rotation\", rotation + TAU * 2, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-	tween.tween_property(self, \"scale\", Vector2.ZERO, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, \"modulate:a\", 0.0, 1.0)
-	
-	tween.tween_callback(Callable(self, \"on_death_effect_done\"))
-
-func on_death_effect_done():
-	emit_signal(\"player_died\")
-	
-
-func flash_on_hit(times: int = 6, interval: float = 0.1) -> void:
-	for i in range(times):
-		visible = false
-		await get_tree().create_timer(interval).timeout
-		visible = true
-		await get_tree().create_timer(interval).timeout
-
-
-	
-	
-	
-"
 
 [node name="Level1-1" type="Node2D"]
 
@@ -148,8 +62,7 @@ texture = ExtResource("9_g2sow")
 
 [node name="Meadow" parent="." instance=ExtResource("10_pmhmy")]
 position = Vector2(77, 95)
-script = SubResource("GDScript_a3se8")
-bullet_scene = ExtResource("12_m47m6")
+script = null
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-259, 180)

@@ -7,9 +7,11 @@ signal level_ended
 var fade := preload("res://Effects/fade.tscn").instantiate()
 var big_coin_scene := preload("res://Items/Coins/BigCoin/BigCoin.tscn")
 var small_coin_scene := preload("res://Items/Coins/SmallCoin/SmallCoin.tscn")
+var carrot_scene := preload("res://Items/Carrot/carrot.tscn")
 @export var coin_spawn_interval_range: Vector2 = Vector2(1.5, 4.0)
 
 var spawning_coins = true
+var carrot_interval = level_duration / 5
 
 func _ready():
 	var player = get_node("Meadow")
@@ -18,6 +20,7 @@ func _ready():
 	start_level_timer()
 	add_child(fade)
 	spawn_coins_loop()
+	spawn_carrots_loop()
 	fade.fade_in()
 
 func start_level_timer() -> void:
@@ -40,7 +43,7 @@ func end_level():
 	await fade.fade_out(1.5)
 	spawning_coins = false
 	emit_signal("level_ended")
-	get_tree().change_scene_to_file("res://WorldMap/worldMap.tscn")
+	$Defeat.visible = true
 	
 func spawn_coins_loop() -> void:
 	while spawning_coins:
@@ -75,5 +78,29 @@ func spawn_random_coins():
 		var coin = coin_scene.instantiate()
 		coin.global_position = spawn_pos
 		add_child(coin)
+		
+func spawn_carrots_loop() -> void:
+	var num_carrots := 5
+	var interval := (level_duration / num_carrots) - 1
+	
+	for i in num_carrots:
+		await get_tree().create_timer(interval).timeout
+		spawn_carrot()
+		
+func spawn_carrot():
+	var screen_rect = get_viewport().get_visible_rect()
+	var screen_top = screen_rect.position.y
+	var screen_bottom = screen_rect.position.y + screen_rect.size.y
+	var screen_right = screen_rect.position.x + screen_rect.size.x
+
+	var y = randf_range(screen_top + 30, screen_bottom - 30)
+	var x = screen_right + randf_range(30, 80)
+
+	var spawn_pos = Vector2(x, y)
+
+	var carrot = carrot_scene.instantiate()
+	carrot.global_position = spawn_pos
+	add_child(carrot)
+	
 
 		

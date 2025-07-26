@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc5gwl7842hro"]
+[gd_scene load_steps=7 format=3 uid="uid://bc5gwl7842hro"]
 
 [ext_resource type="Texture2D" uid="uid://odbjja4fg7e3" path="res://Levels/Level 3/lay1.png" id="2_1p6rt"]
 [ext_resource type="Texture2D" uid="uid://s3brt440vgp0" path="res://Levels/Level 3/lay2.png" id="3_kia57"]
 [ext_resource type="Texture2D" uid="uid://k2ubp4dfifsa" path="res://Levels/Level 3/lay3.png" id="4_toadq"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="5_avnex"]
 [ext_resource type="Texture2D" uid="uid://bgc17gyk4pi13" path="res://Levels/Level 3/lay4.png" id="7_5slqt"]
-[ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="7_58g2t"]
 
 [sub_resource type="GDScript" id="GDScript_a3se8"]
 script/source = "extends CharacterBody2D
@@ -127,7 +126,6 @@ texture = ExtResource("4_toadq")
 [node name="Meadow" parent="." instance=ExtResource("5_avnex")]
 position = Vector2(0, 1)
 script = SubResource("GDScript_a3se8")
-bullet_scene = ExtResource("7_58g2t")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-640, 180)

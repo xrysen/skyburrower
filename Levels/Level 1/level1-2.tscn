@@ -19,8 +19,6 @@
 [node name="Level1-2" type="Node2D"]
 script = ExtResource("1_7xosg")
 level_duration = 60.0
-end_delay = null
-coin_spawn_interval_range = null
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("8_7xosg")]
 position = Vector2(-516, 336)

@@ -89,8 +89,8 @@ func play_death_effect():
 	target_pos.x += 200
 
 	# Tween to that position over 3 seconds (adjust speed/duration)
-	tween.tween_property(self, "position", target_pos, 3.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-	await get_tree().create_timer(1.0).timeout
+	tween.tween_property(self, "position", target_pos, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	await get_tree().create_timer(2.0).timeout
 	emit_signal("player_died")
 
 func on_death_effect_done():

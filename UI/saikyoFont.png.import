@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://cs33dgoykqdem"
+path="res://.godot/imported/saikyoFont.png-4094b5d9beed8c2911ab3fb5e37d1e2c.fontdata"
+
+[deps]
+
+source_file="res://UI/saikyoFont.png"
+dest_files=["res://.godot/imported/saikyoFont.png-4094b5d9beed8c2911ab3fb5e37d1e2c.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("32-131")
+kerning_pairs=PackedStringArray()
+columns=20
+rows=5
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(1, 1, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

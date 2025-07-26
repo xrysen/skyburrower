@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://gq0sfv5pwpai"]
+[gd_scene load_steps=21 format=3 uid="uid://gq0sfv5pwpai"]
 
 [ext_resource type="Script" uid="uid://1mfsxs6jl70f" path="res://Meadow/meadow.gd" id="1_a7u4g"]
 [ext_resource type="Texture2D" uid="uid://d1om4iyantx7k" path="res://Meadow/MeadowSprite-sheet.png" id="1_ema1a"]
-[ext_resource type="Shader" uid="uid://koni5qycioqf" path="res://Meadow/SmokeTrail.gdshader" id="2_1jgu2"]
 [ext_resource type="PackedScene" uid="uid://bosdoytjikblh" path="res://Bullets/Seedshot/seedShot.tscn" id="2_lvwuq"]
 
 [sub_resource type="Shader" id="Shader_apmds"]
@@ -54,42 +53,72 @@ animations = [{
 radius = 17.0136
 height = 48.0255
 
-[sub_resource type="Gradient" id="Gradient_1jgu2"]
-colors = PackedColorArray(1, 0.6, 0, 1, 1, 0, 0, 0)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hl8ey"]
+blend_mode = 1
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_a7u4g"]
-gradient = SubResource("Gradient_1jgu2")
+[sub_resource type="Gradient" id="Gradient_a7u4g"]
+offsets = PackedFloat32Array(0, 0.344156, 0.707792, 1)
+colors = PackedColorArray(0.294118, 0.00392157, 0.00392157, 1, 1, 0.368627, 0, 1, 1, 0.756863, 0, 1, 1, 1, 0.878431, 0)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lvwuq"]
-lifetime_randomness = 0.5
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b5don"]
+gradient = SubResource("Gradient_a7u4g")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_dw01o"]
+offsets = PackedFloat32Array(0, 0.518182, 1)
+colors = PackedColorArray(0.219608, 0.203922, 0.184314, 1, 0.541176, 0.541176, 0.541176, 1, 0.760784, 0.760784, 0.760784, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u5h0a"]
+gradient = SubResource("Gradient_dw01o")
+
+[sub_resource type="Curve" id="Curve_ojhwv"]
+_data = [Vector2(0.0147059, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpoix"]
+curve = SubResource("Curve_ojhwv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q5tpm"]
 particle_flag_disable_z = true
-initial_velocity_min = 150.0
-initial_velocity_max = 150.0
-gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 5.0
-color_ramp = SubResource("GradientTexture1D_a7u4g")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jgu2"]
-shader = ExtResource("2_1jgu2")
-
-[sub_resource type="Gradient" id="Gradient_a1igu"]
-offsets = PackedFloat32Array(0, 0.456044, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.4, 0.4, 0.4, 0.4, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_hl8ey"]
-gradient = SubResource("Gradient_a1igu")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b5don"]
-particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.0
 initial_velocity_min = 20.0
-initial_velocity_max = 20.3
-gravity = Vector3(0, -10, 0)
-scale_min = 10.0
-scale_max = 30.0
-color_ramp = SubResource("GradientTexture1D_hl8ey")
+initial_velocity_max = 40.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, -40, 0)
+scale_curve = SubResource("CurveTexture_bpoix")
+color_ramp = SubResource("GradientTexture1D_u5h0a")
 
-[node name="Node2D" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="Gradient" id="Gradient_lvwuq"]
+offsets = PackedFloat32Array(0, 0.344156, 0.707792, 1)
+colors = PackedColorArray(0.172549, 0.2, 0.219608, 1, 0.352941, 0.419608, 0.458824, 1, 0.611765, 0.666667, 0.709804, 1, 1, 1, 0.878431, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a1igu"]
+gradient = SubResource("Gradient_lvwuq")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a7u4g"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, -40, 0)
+scale_curve = SubResource("CurveTexture_bpoix")
+color_ramp = SubResource("GradientTexture1D_u5h0a")
+
+[node name="Meadow" type="CharacterBody2D" groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_a7u4g")
 bullet_scene = ExtResource("2_lvwuq")
@@ -108,14 +137,19 @@ rotation = -1.55509
 shape = SubResource("CapsuleShape2D_apmds")
 
 [node name="FireTrail" type="GPUParticles2D" parent="."]
-position = Vector2(-27, 10)
-rotation = 3.32218
-process_material = SubResource("ParticleProcessMaterial_lvwuq")
+z_index = 10
+material = SubResource("CanvasItemMaterial_hl8ey")
+position = Vector2(-22, 13)
+rotation = -2.83317
+texture = SubResource("GradientTexture2D_b5don")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_q5tpm")
 
 [node name="SmokeTrail" type="GPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_1jgu2")
-position = Vector2(-35, 8)
-rotation = -2.9391
-lifetime = 2.0
-trail_lifetime = 0.91
-process_material = SubResource("ParticleProcessMaterial_b5don")
+z_index = 10
+position = Vector2(-27, 9)
+rotation = -2.08361
+texture = SubResource("GradientTexture2D_a1igu")
+randomness = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_a7u4g")
