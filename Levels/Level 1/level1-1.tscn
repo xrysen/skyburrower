@@ -17,10 +17,14 @@
 
 [node name="Level1-1" type="Node2D"]
 script = ExtResource("1_1fkka")
+levelNumber = 1
+stageNumber = 1
 
 [node name="Ui" parent="." instance=ExtResource("1_lpd3d")]
 heart_scene = ExtResource("2_1fkka")
 player_path = NodePath("../Meadow")
+levelNumber = 1
+stageNumber = 1
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-512, -27)

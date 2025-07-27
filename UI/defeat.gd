@@ -3,12 +3,12 @@ extends Node2D
 func _ready():
 	$TextureRect/Coins.text = str(Global.coin_count)
 	
+	
 
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$TextureRect/Coins.text = str(Global.coin_count)
 	
-
 
 func _on_retry_button_pressed() -> void:
 	var current_scene = get_tree().current_scene

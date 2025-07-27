@@ -2,7 +2,10 @@ extends Node  # or Node2D or Control
 
 @export var level_duration: float = 30.0
 @export var end_delay: float = 1.5
+@export var levelNumber: int
+@export var stageNumber: int
 signal level_ended
+@onready var ui = $Ui
 
 var fade := preload("res://Effects/fade.tscn").instantiate()
 var big_coin_scene := preload("res://Items/Coins/BigCoin/BigCoin.tscn")
@@ -12,6 +15,8 @@ var carrot_scene := preload("res://Items/Carrot/carrot.tscn")
 
 var spawning_coins = true
 var carrot_interval = level_duration / 5
+var current_carrots := 0
+const MAX_CARROTS := 5
 
 func _ready():
 	var player = get_node("Meadow")
@@ -22,6 +27,14 @@ func _ready():
 	spawn_coins_loop()
 	spawn_carrots_loop()
 	fade.fade_in()
+
+func connect_carrots():
+	for carrot in get_tree().get_nodes_in_group("Carrot"):
+		carrot.carrot_collected.connect(on_carrot_collected)
+
+func on_carrot_collected():
+	current_carrots += 1
+	ui.set_carrot_count(current_carrots)
 
 func start_level_timer() -> void:
 	await create_timer(level_duration).timeout
@@ -37,6 +50,7 @@ func create_timer(time: float) -> Timer:
 	return timer
 
 func _on_player_died():
+	current_carrots = 0
 	end_level()
 
 func end_level():
@@ -44,6 +58,9 @@ func end_level():
 	spawning_coins = false
 	emit_signal("level_ended")
 	$Defeat.visible = true
+	#var previous_best = Global.get_best_carrot_count(level_name) <- How to deal with saving carrots eventually
+	#if current_carrots > previous_best:
+		#Global.set_best_carrot_count(level_name, current_carrots)
 	
 func spawn_coins_loop() -> void:
 	while spawning_coins:
@@ -85,9 +102,9 @@ func spawn_carrots_loop() -> void:
 	
 	for i in num_carrots:
 		await get_tree().create_timer(interval).timeout
-		spawn_carrot()
+		spawn_carrot(levelNumber, stageNumber)
 		
-func spawn_carrot():
+func spawn_carrot(level_num: int, stage_num: int):
 	var screen_rect = get_viewport().get_visible_rect()
 	var screen_top = screen_rect.position.y
 	var screen_bottom = screen_rect.position.y + screen_rect.size.y
@@ -99,8 +116,11 @@ func spawn_carrot():
 	var spawn_pos = Vector2(x, y)
 
 	var carrot = carrot_scene.instantiate()
+	carrot.levelNumber = level_num
+	carrot.stageNumber = stage_num
 	carrot.global_position = spawn_pos
 	add_child(carrot)
+	carrot.carrot_collected.connect(on_carrot_collected)
 	
 
 		
