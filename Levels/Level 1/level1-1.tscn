@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjj0h3f0yd6xf"]
+[gd_scene load_steps=14 format=3 uid="uid://bjj0h3f0yd6xf"]
 
 [ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_1fkka"]
 [ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="1_lpd3d"]
@@ -11,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="8_43edm"]
 [ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="9_6yn58"]
 [ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="10_lpd3d"]
-[ext_resource type="PackedScene" uid="uid://cj3v7eknso2vj" path="res://UI/defeat.tscn" id="14_pje2y"]
 [ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="14_s7bxl"]
 [ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="15_uvci5"]
 
 [node name="Level1-1" type="Node2D"]
 script = ExtResource("1_1fkka")
+level_duration = 10.0
 levelNumber = 1
 stageNumber = 1
 
@@ -83,7 +83,3 @@ max_enemies_per_wave = 1
 time_between_spawns = 5.0
 max_waves = 2
 spawn_time_start = 10.0
-
-[node name="Defeat" parent="." instance=ExtResource("14_pje2y")]
-visible = false
-z_index = 100

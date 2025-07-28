@@ -39,7 +39,7 @@ func on_carrot_collected():
 func start_level_timer() -> void:
 	await create_timer(level_duration).timeout
 	await create_timer(end_delay).timeout
-	end_level()
+	end_level(true)
 
 func create_timer(time: float) -> Timer:
 	var timer = Timer.new()
@@ -51,13 +51,22 @@ func create_timer(time: float) -> Timer:
 
 func _on_player_died():
 	current_carrots = 0
-	end_level()
+	end_level(false)
 
-func end_level():
+func end_level(win: bool):
 	await fade.fade_out(1.5)
+	fade.hide()
+	get_tree().paused = true
 	spawning_coins = false
+	$Ui.hide()
 	emit_signal("level_ended")
-	$Defeat.visible = true
+	if !win:
+		var defeat_scene = preload("res://UI/defeat.tscn").instantiate()
+		add_child(defeat_scene)
+	else:
+		var victory_scene = preload("res://UI/victory.tscn").instantiate()
+		victory_scene.set_carrot_count(current_carrots)
+		add_child(victory_scene)
 	#var previous_best = Global.get_best_carrot_count(level_name) <- How to deal with saving carrots eventually
 	#if current_carrots > previous_best:
 		#Global.set_best_carrot_count(level_name, current_carrots)
