@@ -8,7 +8,7 @@ var maxHealth := Global.max_health
 var current_health := Global.max_health
 var magnet := Global.magnet
 
-var follow_speed := 5.0
+var follow_speed := Global.speed
 var offset = Vector2(20, 15)
 
 var is_dying := false
@@ -17,31 +17,33 @@ signal player_died
 
 func _ready():
 	$AnimatedSprite2D.play("default")
-	
+
 	$SmokeTrail.visible = false
 	$SmokeTrail.emitting = false
 	$FireTrail.visible = false
 	$FireTrail.emitting = false
 
-	
+
 func _process(delta):
 	fire_timer -= delta
 	if fire_timer <= 0:
 		fire_bullet()
 		fire_timer = fire_rate
-		
+
 	var mouse_pos = get_global_mouse_position()
 	var screen_size = get_viewport_rect().size
-	
+
 	var clamped_x = clamp(mouse_pos.x, 0, screen_size.x)
 	var clamped_y = clamp(mouse_pos.y, 0, screen_size.y)
-	
+
 	if is_dying:
 		move_offscreen(delta)
 	else:
 		global_position = global_position.lerp(Vector2(clamped_x, clamped_y), follow_speed * delta)
 
-var death_speed = Vector2(100, 100) 
+
+var death_speed = Vector2(100, 100)
+
 
 func move_offscreen(delta):
 	global_position += death_speed * delta
@@ -50,23 +52,27 @@ func move_offscreen(delta):
 	if global_position.y > viewport.size.y + 100 or global_position.x > viewport.size.x + 100:
 		on_death_effect_done()
 
+
 func fire_bullet():
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
 	bullet.damage = strength
-	
+
 	bullet.global_position = global_position + offset
 
+
 signal health_changed
+
 
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
 	emit_signal("health_changed")
 	flash_on_hit()
-	
+
 	if current_health == 0:
 		play_death_effect()
-	
+
+
 func play_death_effect():
 	var tween := get_tree().create_tween()
 	is_dying = true
@@ -89,13 +95,16 @@ func play_death_effect():
 	target_pos.x += 200
 
 	# Tween to that position over 3 seconds (adjust speed/duration)
-	tween.tween_property(self, "position", target_pos, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "position", target_pos, 4.0).set_trans(Tween.TRANS_LINEAR).set_ease(
+		Tween.EASE_IN
+	)
 	await get_tree().create_timer(2.0).timeout
 	emit_signal("player_died")
 
+
 func on_death_effect_done():
 	emit_signal("player_died")
-	
+
 
 func flash_on_hit(times: int = 6, interval: float = 0.1) -> void:
 	for i in range(times):
@@ -103,8 +112,3 @@ func flash_on_hit(times: int = 6, interval: float = 0.1) -> void:
 		await get_tree().create_timer(interval).timeout
 		visible = true
 		await get_tree().create_timer(interval).timeout
-
-
-	
-	
-	

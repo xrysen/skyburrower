@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt5inqpv31kli"]
+
+[ext_resource type="Texture2D" uid="uid://cba3ckkk5eije" path="res://WorldMap/upgradeFilled.png" id="1_ou47f"]
+
+[node name="UpgradeEmpty" type="TextureRect"]
+texture = ExtResource("1_ou47f")

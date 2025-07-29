@@ -10,6 +10,7 @@ var bob_timer := 0.0
 var bob_interval := 2.5
 var bob_distance := 6.0
 
+
 func _ready():
 	$AnimatedSprite2D.play("default")
 	$HealthBar.visible = false
@@ -21,6 +22,7 @@ func _ready():
 	fade_timer.one_shot = true
 	fade_timer.connect("timeout", Callable(self, "_on_fade_timeout"))
 	add_child(fade_timer)
+
 
 func take_damage(amount: int):
 	current_health -= amount
@@ -34,45 +36,58 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 
+
 func die():
 	if coin_scene:
 		var coin = coin_scene.instantiate()
 		coin.global_position = global_position
-		get_parent().add_child(coin) 
+		get_parent().add_child(coin)
 	queue_free()
+
 
 func _on_fade_timeout():
 	$HealthBar.visible = false
 
+
 func _process(delta):
 	position.x -= speed * delta
-	
+
 	bob_timer += delta
 	if bob_timer >= bob_interval:
 		bob_timer = 0.0
 		random_bob()
-			
+
+
 func random_bob():
 	var offset = randf_range(-bob_distance, bob_distance)
 	var tween = create_tween()
-	tween.tween_property(self, "position:y", position.y + offset, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	
+	(
+		tween
+		. tween_property(self, "position:y", position.y + offset, 0.3)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
+
+
 var damage_cooldown = false
+
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if damage_cooldown:
 		return
 	if body.is_in_group("player"):
-		body.take_damage(1) 
+		body.take_damage(1)
 		damage_cooldown = true
 		await get_tree().create_timer(1.0).timeout
 		damage_cooldown = false
-		
+
+
 func flash_on_hit():
-	modulate = Color(1, 0.5, 0.5) 
+	modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
-	modulate = Color(1,1,1)
-	
+	modulate = Color(1, 1, 1)
+
+
 func initialize(config: Dictionary):
 	if config.has("speed"):
 		speed = config["speed"]

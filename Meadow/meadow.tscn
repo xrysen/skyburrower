@@ -122,7 +122,6 @@ color_ramp = SubResource("GradientTexture1D_u5h0a")
 collision_mask = 2
 script = ExtResource("1_a7u4g")
 bullet_scene = ExtResource("2_lvwuq")
-strength = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 10

@@ -14,16 +14,19 @@ extends Node
 var current_wave = 0
 var enemies_spawned = 0
 
+
 func _ready():
 	await get_tree().create_timer(spawn_time_start).timeout
 	start_wave()
-	
+
+
 func start_wave():
 	enemies_spawned = 0
-	current_wave +=1
+	current_wave += 1
 	var enemies_this_wave = randi_range(min_enemies_per_wave, max_enemies_per_wave)
 	spawn_enemies(enemies_this_wave)
-	
+
+
 func spawn_enemies(enemies_this_wave: int):
 	if enemies_spawned < enemies_this_wave and current_wave <= max_waves:
 		spawn_enemy()
@@ -34,32 +37,31 @@ func spawn_enemies(enemies_this_wave: int):
 		await get_tree().create_timer(time_between_waves).timeout
 		start_wave()
 
+
 var last_spawn_y = -100  # Keep track of last y position
 var min_distance_y = 80  # Minimum vertical distance between spawns
+
 
 func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
 	var screen_size = get_viewport().get_visible_rect().size
 
 	# Random vertical position with spacing check
-	var y : float
+	var y: float
 	var attempts = 0
 	while true:
 		y = randf_range(50, screen_size.y - 50)
 		if abs(y - last_spawn_y) >= min_distance_y or attempts > 5:
 			break
 		attempts += 1
-	
+
 	last_spawn_y = y  # Store for next spawn
 	var x = screen_size.x + 50  # Always just off the right side
 	enemy.global_position = Vector2(x, y)
 
 	# Define vertical movement bounds (just within screen)
-	var vertical_bounds = {
-		"top": 50.0,
-		"bottom": screen_size.y - 50.0
-	}
-	
+	var vertical_bounds = {"top": 50.0, "bottom": screen_size.y - 50.0}
+
 	# Generic config
 	var config = {
 		"speed": enemy_speed,
@@ -67,10 +69,8 @@ func spawn_enemy():
 		"coin_scene": coin_scene,
 		"vertical_bounds": vertical_bounds
 	}
-	
+
 	if "initialize" in enemy:
 		enemy.initialize(config)
 
 	get_parent().call_deferred("add_child", enemy)
-	
-	

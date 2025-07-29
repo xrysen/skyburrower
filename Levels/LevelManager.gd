@@ -18,28 +18,33 @@ var carrot_interval = level_duration / 5
 var current_carrots := 0
 const MAX_CARROTS := 5
 
+
 func _ready():
 	var player = get_node("Meadow")
 	player.player_died.connect(_on_player_died)
-	
+
 	start_level_timer()
 	add_child(fade)
 	spawn_coins_loop()
 	spawn_carrots_loop()
 	fade.fade_in()
 
+
 func connect_carrots():
 	for carrot in get_tree().get_nodes_in_group("Carrot"):
 		carrot.carrot_collected.connect(on_carrot_collected)
+
 
 func on_carrot_collected():
 	current_carrots += 1
 	ui.set_carrot_count(current_carrots)
 
+
 func start_level_timer() -> void:
 	await create_timer(level_duration).timeout
 	await create_timer(end_delay).timeout
 	end_level(true)
+
 
 func create_timer(time: float) -> Timer:
 	var timer = Timer.new()
@@ -49,9 +54,11 @@ func create_timer(time: float) -> Timer:
 	timer.start()
 	return timer
 
+
 func _on_player_died():
 	current_carrots = 0
 	end_level(false)
+
 
 func end_level(win: bool):
 	await fade.fade_out(1.5)
@@ -69,21 +76,23 @@ func end_level(win: bool):
 		add_child(victory_scene)
 	#var previous_best = Global.get_best_carrot_count(level_name) <- How to deal with saving carrots eventually
 	#if current_carrots > previous_best:
-		#Global.set_best_carrot_count(level_name, current_carrots)
-	
+	#Global.set_best_carrot_count(level_name, current_carrots)
+
+
 func spawn_coins_loop() -> void:
 	while spawning_coins:
 		var interval = randf_range(coin_spawn_interval_range.x, coin_spawn_interval_range.y)
 		await get_tree().create_timer(interval).timeout
-		
+
 		spawn_random_coins()
+
 
 func spawn_random_coins():
 	var raw_luck = clamp(Global.luck, 1.0, 10.0)
 	var luck = (raw_luck - 1.0) / 9.0  # normalize to 0.0–1.0
 
 	# Scale base coin count: 2–7 coins at min luck to high luck
-	var min_coins = int(lerp(2, 10, luck)) 
+	var min_coins = int(lerp(2, 10, luck))
 	var max_coins = int(lerp(4, 20, luck))
 
 	var coin_count = randi_range(min_coins, max_coins)
@@ -104,15 +113,17 @@ func spawn_random_coins():
 		var coin = coin_scene.instantiate()
 		coin.global_position = spawn_pos
 		add_child(coin)
-		
+
+
 func spawn_carrots_loop() -> void:
 	var num_carrots := 5
 	var interval := (level_duration / num_carrots) - 1
-	
+
 	for i in num_carrots:
 		await get_tree().create_timer(interval).timeout
 		spawn_carrot(levelNumber, stageNumber)
-		
+
+
 func spawn_carrot(level_num: int, stage_num: int):
 	var screen_rect = get_viewport().get_visible_rect()
 	var screen_top = screen_rect.position.y
@@ -130,6 +141,3 @@ func spawn_carrot(level_num: int, stage_num: int):
 	carrot.global_position = spawn_pos
 	add_child(carrot)
 	carrot.carrot_collected.connect(on_carrot_collected)
-	
-
-		

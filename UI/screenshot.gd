@@ -1,5 +1,6 @@
 extends Node
 
+
 func _ready():
 	await get_tree().process_frame  # Ensure everything is rendered
 	var viewport := get_viewport()
