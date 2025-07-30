@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://btcflhynn2aqm"]
+
+[ext_resource type="FontFile" uid="uid://vkrvvl6kxy07" path="res://UI/saikyo9png.png" id="1_d6g47"]
+
+[resource]
+default_font = ExtResource("1_d6g47")
+default_font_size = 9

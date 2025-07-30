@@ -18,7 +18,7 @@ func _ready():
 	$Label.text = "%d" % Global.coin_count
 	add_child(fade)
 	draw_upgrades()
-
+	set_tooltip_text()
 	fade.fade_in()
 
 
@@ -27,7 +27,7 @@ func draw_heart_upgrade():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var heart_icon = full_upgrade if i < Global.upgrades.health else empty_upgrade
+		var heart_icon = full_upgrade if i < Global.upgrades["health"]["level"] else empty_upgrade
 		heart_container.add_child(heart_icon.instantiate())
 
 
@@ -36,7 +36,7 @@ func draw_bullet_strength():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var bs_icon = full_upgrade if i < Global.upgrades.strength else empty_upgrade
+		var bs_icon = full_upgrade if i < Global.upgrades["strength"]["level"] else empty_upgrade
 		bstr_container.add_child(bs_icon.instantiate())
 
 
@@ -45,7 +45,7 @@ func draw_bullet_speed():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var bspd_icon = full_upgrade if i < Global.upgrades.fire_rate else empty_upgrade
+		var bspd_icon = full_upgrade if i < Global.upgrades["fire_rate"]["level"] else empty_upgrade
 		bspd_container.add_child(bspd_icon.instantiate())
 
 
@@ -54,7 +54,9 @@ func draw_bullet_total():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var bull_icon = full_upgrade if i < Global.upgrades.num_bullets else empty_upgrade
+		var bull_icon = (
+			full_upgrade if i < Global.upgrades["num_bullets"]["level"] else empty_upgrade
+		)
 		bullets_container.add_child(bull_icon.instantiate())
 
 
@@ -63,7 +65,7 @@ func draw_speed():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var spd_icon = full_upgrade if i < Global.upgrades.speed else empty_upgrade
+		var spd_icon = full_upgrade if i < Global.upgrades["speed"]["level"] else empty_upgrade
 		speed_container.add_child(spd_icon.instantiate())
 
 
@@ -72,7 +74,7 @@ func draw_magnet():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var mag_icon = full_upgrade if i < Global.upgrades.magnet else empty_upgrade
+		var mag_icon = full_upgrade if i < Global.upgrades["magnet"]["level"] else empty_upgrade
 		magnet_container.add_child(mag_icon.instantiate())
 
 
@@ -81,7 +83,7 @@ func draw_luck():
 		child.queue_free()
 
 	for i in range(MAX_UPGRADE):
-		var luck_icon = full_upgrade if i < Global.upgrades.luck else empty_upgrade
+		var luck_icon = full_upgrade if i < Global.upgrades["luck"]["level"] else empty_upgrade
 		luck_container.add_child(luck_icon.instantiate())
 
 
@@ -96,10 +98,51 @@ func draw_upgrades():
 
 
 func handle_upgrade(upgrade):
-	if Global.upgrades[upgrade] < 7:
-		Global.upgrades[upgrade] += 1
+	if Global.upgrades[upgrade]["level"] < 7 && Global.coin_count >= Global.upgrades[upgrade]["cost"]:
+		Global.remove_coins(Global.upgrades[upgrade]["cost"])
+		Global.upgrades[upgrade]["level"] += 1
 		Global.apply_upgrades()
+		Global.apply_upgrade_cost()
 		draw_upgrades()
+		set_tooltip_text()
+		$Label.text = "%d" % Global.coin_count
+
+
+func set_tooltip_text():
+	$HButton.tooltip_text = (
+		"Cost: %s\nBoosts your max health.\nBecause surviving is kind\nof important."
+		% Global.upgrades["health"]["cost"]
+	)
+
+	$BSButton.tooltip_text = (
+		"Cost: %s\nYour bullets hit harder.\nFewer shots, more\nresults."
+		% Global.upgrades["strength"]["cost"]
+	)
+
+	$BSPDButton.tooltip_text = (
+		"Cost: %s\nFire faster. Because\nstanding still is for\namateurs."
+		% Global.upgrades["fire_rate"]["cost"]
+	)
+
+	$NumBulletsButton.tooltip_text = (
+		"Cost: %s\nAdds more bullets per\nshot. Simple math:\nmore = better."
+		% Global.upgrades["num_bullets"]["cost"]
+	)
+
+	$SpeedButton.tooltip_text = (
+		"Cost: %s\nIncreases movement\nspeed. Dodge smarter,\nnot harder."
+		% Global.upgrades["speed"]["cost"]
+	)
+
+	$MagnetButton.tooltip_text = (
+		"Cost: %s\nPulls coins in from\nfarther away. Like you're\nmade of money."
+		% Global.upgrades["magnet"]["cost"]
+	)
+
+	$LuckButton.tooltip_text = (
+		"Cost: %s\nBetter coin drops and\nmore big coins. Some\nbunnies have all the luck."
+		% Global.upgrades["luck"]["cost"]
+	)
 
 
 func _on_luck_button_pressed() -> void:
