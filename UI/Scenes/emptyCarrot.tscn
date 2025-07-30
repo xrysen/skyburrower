@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmg1whsmkoolb"]
+
+[ext_resource type="Texture2D" uid="uid://r2g3gj6gnb0s" path="res://UI/Assets/emptyCarrot.png" id="1_iu78m"]
+
+[node name="EmptyCarrot" type="Control"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_iu78m")

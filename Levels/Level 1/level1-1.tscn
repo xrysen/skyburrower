@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bjj0h3f0yd6xf"]
 
 [ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_1fkka"]
-[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="1_lpd3d"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="1_lpd3d"]
 [ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="1_rmpoc"]
-[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="2_1fkka"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="2_1fkka"]
 [ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="2_8m5c3"]
 [ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="3_2s83g"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_43edm"]

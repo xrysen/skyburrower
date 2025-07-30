@@ -1,17 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://baq21irju2ias"]
+[gd_scene load_steps=15 format=3 uid="uid://baq21irju2ias"]
 
 [ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_chyv4"]
 [ext_resource type="Texture2D" uid="uid://dr2xgbn643lle" path="res://Levels/Level 2/sky1.png" id="1_ky35d"]
 [ext_resource type="Script" uid="uid://mjlr0u3k7ugj" path="res://Levels/Level 2/lightning.gd" id="1_r16hl"]
-[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/ui.tscn" id="2_stwvu"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="2_stwvu"]
 [ext_resource type="Texture2D" uid="uid://bqutbjsfbx67j" path="res://Levels/Level 2/sky2.png" id="2_vhufb"]
-[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Heart.tscn" id="3_42spg"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="3_42spg"]
 [ext_resource type="Texture2D" uid="uid://dlcprnwdwg1hf" path="res://Levels/Level 2/rocks2.png" id="3_dgl6y"]
 [ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_r16hl"]
 [ext_resource type="Texture2D" uid="uid://0lf614gwewa4" path="res://Levels/Level 2/river1.png" id="7_chyv4"]
-[ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://rain.tscn" id="7_ky35d"]
+[ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://Effects/rain.tscn" id="7_ky35d"]
 [ext_resource type="Texture2D" uid="uid://dkdnpm4gm266t" path="res://Levels/Level 2/river2.png" id="8_r16hl"]
-[ext_resource type="PackedScene" uid="uid://cj3v7eknso2vj" path="res://UI/defeat.tscn" id="12_42spg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stwvu"]
 atlas = ExtResource("7_chyv4")
@@ -89,5 +88,3 @@ position = Vector2(345, 101)
 
 [node name="Meadow" parent="." instance=ExtResource("4_r16hl")]
 script = null
-
-[node name="Defeat" parent="." instance=ExtResource("12_42spg")]

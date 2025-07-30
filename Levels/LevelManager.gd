@@ -68,10 +68,10 @@ func end_level(win: bool):
 	$Ui.hide()
 	emit_signal("level_ended")
 	if !win:
-		var defeat_scene = preload("res://UI/defeat.tscn").instantiate()
+		var defeat_scene = preload("res://UI/Scenes/defeat.tscn").instantiate()
 		add_child(defeat_scene)
 	else:
-		var victory_scene = preload("res://UI/victory.tscn").instantiate()
+		var victory_scene = preload("res://UI/Scenes/victory.tscn").instantiate()
 		victory_scene.set_carrot_count(current_carrots)
 		add_child(victory_scene)
 	#var previous_best = Global.get_best_carrot_count(level_name) <- How to deal with saving carrots eventually
