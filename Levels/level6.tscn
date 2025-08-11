@@ -1,23 +1,23 @@
 [gd_scene load_steps=15 format=3 uid="uid://baq21irju2ias"]
 
-[ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_chyv4"]
-[ext_resource type="Texture2D" uid="uid://dr2xgbn643lle" path="res://Levels/Level 2/sky1.png" id="1_ky35d"]
-[ext_resource type="Script" uid="uid://mjlr0u3k7ugj" path="res://Levels/Level 2/lightning.gd" id="1_r16hl"]
-[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="2_stwvu"]
-[ext_resource type="Texture2D" uid="uid://bqutbjsfbx67j" path="res://Levels/Level 2/sky2.png" id="2_vhufb"]
-[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="3_42spg"]
-[ext_resource type="Texture2D" uid="uid://dlcprnwdwg1hf" path="res://Levels/Level 2/rocks2.png" id="3_dgl6y"]
-[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="4_r16hl"]
-[ext_resource type="Texture2D" uid="uid://0lf614gwewa4" path="res://Levels/Level 2/river1.png" id="7_chyv4"]
-[ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://Effects/rain.tscn" id="7_ky35d"]
-[ext_resource type="Texture2D" uid="uid://dkdnpm4gm266t" path="res://Levels/Level 2/river2.png" id="8_r16hl"]
+[ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_5sfgv"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="2_co7ho"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="3_6s3ov"]
+[ext_resource type="Script" uid="uid://mjlr0u3k7ugj" path="res://Levels/Level 2/lightning.gd" id="4_y0hew"]
+[ext_resource type="Texture2D" uid="uid://dr2xgbn643lle" path="res://Levels/Level 2/sky1.png" id="5_q6bqe"]
+[ext_resource type="Texture2D" uid="uid://bqutbjsfbx67j" path="res://Levels/Level 2/sky2.png" id="6_conf1"]
+[ext_resource type="Texture2D" uid="uid://dlcprnwdwg1hf" path="res://Levels/Level 2/rocks2.png" id="7_ckxq1"]
+[ext_resource type="Texture2D" uid="uid://0lf614gwewa4" path="res://Levels/Level 2/river1.png" id="8_rup1t"]
+[ext_resource type="Texture2D" uid="uid://dkdnpm4gm266t" path="res://Levels/Level 2/river2.png" id="9_quljx"]
+[ext_resource type="PackedScene" uid="uid://bcttpuu2i04km" path="res://Effects/rain.tscn" id="10_a5ni6"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="11_n22og"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stwvu"]
-atlas = ExtResource("7_chyv4")
+atlas = ExtResource("8_rup1t")
 region = Rect2(0, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42spg"]
-atlas = ExtResource("8_r16hl")
+atlas = ExtResource("9_quljx")
 region = Rect2(0, 0, 640, 360)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tqgb3"]
@@ -35,10 +35,10 @@ animations = [{
 }]
 
 [node name="Lvl2" type="Node2D"]
-script = ExtResource("1_chyv4")
+script = ExtResource("1_5sfgv")
 
-[node name="Ui" parent="." instance=ExtResource("2_stwvu")]
-heart_scene = ExtResource("3_42spg")
+[node name="Ui" parent="." instance=ExtResource("2_co7ho")]
+heart_scene = ExtResource("3_6s3ov")
 player_path = NodePath("../Meadow")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -46,11 +46,11 @@ scroll_offset = Vector2(-640, -27)
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-70, 0)
 repeat_times = 100
-script = ExtResource("1_r16hl")
+script = ExtResource("4_y0hew")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(310, 206)
-texture = ExtResource("1_ky35d")
+texture = ExtResource("5_q6bqe")
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-640, 23)
@@ -61,7 +61,7 @@ repeat_times = 20
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
 position = Vector2(0, 161)
 scale = Vector2(1, 0.962)
-texture = ExtResource("2_vhufb")
+texture = ExtResource("6_conf1")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-640, 179)
@@ -70,7 +70,7 @@ autoscroll = Vector2(-100, 0)
 repeat_times = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
-texture = ExtResource("3_dgl6y")
+texture = ExtResource("7_ckxq1")
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-640, 180)
@@ -83,8 +83,8 @@ sprite_frames = SubResource("SpriteFrames_tqgb3")
 autoplay = "default"
 frame_progress = 0.110599
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("7_ky35d")]
+[node name="GPUParticles2D" parent="." instance=ExtResource("10_a5ni6")]
 position = Vector2(345, 101)
 
-[node name="Meadow" parent="." instance=ExtResource("4_r16hl")]
+[node name="Meadow" parent="." instance=ExtResource("11_n22og")]
 script = null

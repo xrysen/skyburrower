@@ -26,7 +26,7 @@ offset_right = 99.0
 offset_bottom = 65.0
 theme_override_fonts/font = ExtResource("2_e6gg6")
 theme_override_font_sizes/font_size = 10
-text = "999"
+text = "9999"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(70, 31)
@@ -46,7 +46,7 @@ z_index = -1
 layout_mode = 0
 offset_left = 43.0
 offset_top = 39.0
-offset_right = 90.0
+offset_right = 100.0
 offset_bottom = 55.0
 color = Color(0, 0, 0, 0.231373)
 

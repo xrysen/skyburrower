@@ -110,3 +110,11 @@ func get_carrot(level) -> int:
 	
 func set_carrot(level, amount):
 	levels[level]["carrot_count"] = amount
+	
+func load_level(level):
+	var path = "res://Levels/level%d.tscn" % level
+	var level_scene = load(path)
+	if level_scene:
+		get_tree().change_scene_to_packed(level_scene)
+	else:
+		push_error("Level scene not found: %s", % path)

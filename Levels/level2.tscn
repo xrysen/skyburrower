@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://dq24g7ogri5vo"]
+
+[ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_65ryg"]
+[ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="2_4m3ey"]
+[ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="3_lylsv"]
+[ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="4_u66px"]
+[ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="5_4idtp"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="6_dpe6j"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="7_m8ou3"]
+[ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="8_odihm"]
+[ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="9_vh8st"]
+[ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="10_plkcr"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="11_ucg3d"]
+[ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="12_fn86y"]
+[ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="13_hhhfn"]
+[ext_resource type="PackedScene" uid="uid://byvn2204ajf0" path="res://Enemies/Sapshell Beetle/sapshell.tscn" id="14_wqun2"]
+[ext_resource type="PackedScene" uid="uid://co7ml72e4y3dk" path="res://Items/Coins/BigCoin/BigCoin.tscn" id="15_x0bbt"]
+
+[node name="Level1-2" type="Node2D"]
+script = ExtResource("1_65ryg")
+level_duration = 60.0
+
+[node name="Sporespinner Spawn" parent="." instance=ExtResource("2_4m3ey")]
+position = Vector2(-516, 336)
+enemy_scene = ExtResource("3_lylsv")
+on_death = ExtResource("4_u66px")
+coin_scene = ExtResource("5_4idtp")
+max_enemies_per_wave = 3
+time_between_spawns = 5.0
+spawn_time_start = 10.0
+
+[node name="Ui" parent="." instance=ExtResource("6_dpe6j")]
+heart_scene = ExtResource("7_m8ou3")
+player_path = NodePath("../Meadow")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("8_odihm")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 23)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("9_vh8st")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-257, 179)
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture = ExtResource("10_plkcr")
+
+[node name="Meadow" parent="." instance=ExtResource("11_ucg3d")]
+position = Vector2(77, 95)
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-259, 180)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-200, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+texture = ExtResource("12_fn86y")
+
+[node name="Flutternat Spawner" parent="." instance=ExtResource("2_4m3ey")]
+position = Vector2(-259, 180)
+enemy_scene = ExtResource("13_hhhfn")
+coin_scene = ExtResource("5_4idtp")
+min_enemies_per_wave = 3
+max_enemies_per_wave = 7
+time_between_waves = 5.0
+max_waves = 6
+spawn_time_start = 2.0
+
+[node name="Sapshell Spawner" parent="." instance=ExtResource("2_4m3ey")]
+enemy_scene = ExtResource("14_wqun2")
+coin_scene = ExtResource("15_x0bbt")
+max_enemies_per_wave = 2
+time_between_waves = 10.0
+enemy_speed = 50.0
+max_waves = 4
+spawn_time_start = 12.0

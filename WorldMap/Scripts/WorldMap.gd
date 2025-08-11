@@ -174,4 +174,4 @@ func _on_h_button_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Level 1/level1-1.tscn")
+	get_tree().change_scene_to_file("res://Levels/level1.tscn")

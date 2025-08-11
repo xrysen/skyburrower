@@ -33,3 +33,11 @@ func show_carrots(amount: int):
 			carr_nodes[i].texture = full_carrot
 		else:
 			carr_nodes[i].texture = empty_carrot
+
+
+func _on_pressed() -> void:
+	print("click")
+	if not Global.levels[level_index].isLocked:
+		Global.load_level(level_index)
+	else:
+		print("Error")

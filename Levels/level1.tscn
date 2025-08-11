@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjj0h3f0yd6xf"]
+
+[ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_1jijn"]
+[ext_resource type="PackedScene" uid="uid://c5rnf6hl14e7x" path="res://UI/Scenes/ui.tscn" id="2_20gr8"]
+[ext_resource type="PackedScene" uid="uid://tueqctsn3mb" path="res://UI/Scenes/Heart.tscn" id="3_ts5l0"]
+[ext_resource type="Texture2D" uid="uid://bgnp0wq68m23m" path="res://Levels/Level 1/lvl1-1.png" id="4_u2cfn"]
+[ext_resource type="Texture2D" uid="uid://du7dmqlwxkb6h" path="res://Levels/Level 1/lvl1-2.png" id="5_lr1ra"]
+[ext_resource type="Texture2D" uid="uid://btpcrwkg7o7wm" path="res://Levels/Level 1/lvl1-3.png" id="6_r7a1c"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="7_sqs0x"]
+[ext_resource type="Texture2D" uid="uid://bdsw158ua1neg" path="res://Levels/Level 1/lvl1-4.png" id="8_vy400"]
+[ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="9_eaymk"]
+[ext_resource type="PackedScene" uid="uid://bot5qbpna53tr" path="res://Enemies/Flutternat/flutternat.tscn" id="10_8n8es"]
+[ext_resource type="PackedScene" uid="uid://bnpdixt7651ov" path="res://Items/Coins/SmallCoin/SmallCoin.tscn" id="11_esoy3"]
+[ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="12_1ej3e"]
+[ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="13_xsckx"]
+
+[node name="Level1-1" type="Node2D"]
+script = ExtResource("1_1jijn")
+level_duration = 10.0
+levelNumber = 1
+stageNumber = 1
+
+[node name="Ui" parent="." instance=ExtResource("2_20gr8")]
+heart_scene = ExtResource("3_ts5l0")
+player_path = NodePath("../Meadow")
+levelNumber = 1
+stageNumber = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("4_u2cfn")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-640, 23)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(0, 161)
+scale = Vector2(1, 0.962)
+texture = ExtResource("5_lr1ra")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-257, 179)
+repeat_size = Vector2(512, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture = ExtResource("6_r7a1c")
+
+[node name="Meadow" parent="." instance=ExtResource("7_sqs0x")]
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-259, 180)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-200, 0)
+repeat_times = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+texture = ExtResource("8_vy400")
+
+[node name="Flutternat Spawner" parent="." instance=ExtResource("9_eaymk")]
+position = Vector2(-259, 180)
+enemy_scene = ExtResource("10_8n8es")
+coin_scene = ExtResource("11_esoy3")
+time_between_waves = 5.0
+spawn_time_start = 2.0
+
+[node name="Sporespinner Spawn" parent="." instance=ExtResource("9_eaymk")]
+position = Vector2(-516, 336)
+enemy_scene = ExtResource("12_1ej3e")
+on_death = ExtResource("13_xsckx")
+coin_scene = ExtResource("11_esoy3")
+max_enemies_per_wave = 1
+time_between_spawns = 5.0
+max_waves = 2
+spawn_time_start = 10.0
