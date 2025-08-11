@@ -1,6 +1,6 @@
 extends Node
 
-var coin_count: int = 100
+var coin_count: int = 990
 var fire_rate: float = 0.5
 var strength: int = 1
 var max_health: int = 3
@@ -48,7 +48,34 @@ func apply_upgrade_cost():
 	upgrades["num_bullets"]["cost"] = upgrade_formula("num_bullets")
 
 
-var levels = [{"level": [{"carrot_count": 0, "completed": false}]}]
+var levels = [
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": false },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+	{ "carrot_count": 0, "completed": false, "isLocked": true },
+]
 
 signal coins_changed
 signal carrot_changed
@@ -64,18 +91,22 @@ func remove_coins(amount: int = 1):
 	emit_signal("coins_changed")
 
 
-func add_carrot(level, stage):
-	levels[level - 1]["level"][stage - 1]["carrot_count"] += 1
+func add_carrot(level):
+	levels[level]["carrot_count"] += 1
 	emit_signal("carrot_changed")
 
 
-func reset_carrot(level, stage):
-	levels[level - 1]["level"][stage - 1]["carrot_count"] = 0
+func reset_carrot(level):
+	levels[level]["carrot_count"] = 0
 
 
-func mark_stage_complete(level, stage):
-	levels[level - 1]["level"][stage - 1]["completed"] = true
+func mark_stage_complete(level):
+	levels[level]["completed"] = true
+	levels[level + 1]["isLocked"] = false
 
 
-func get_carrot(level, stage) -> int:
-	return levels[level - 1]["level"][stage - 1]["carrot_count"]
+func get_carrot(level) -> int:
+	return levels[level]["carrot_count"]
+	
+func set_carrot(level, amount):
+	levels[level]["carrot_count"] = amount

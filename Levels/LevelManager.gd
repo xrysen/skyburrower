@@ -73,7 +73,11 @@ func end_level(win: bool):
 	else:
 		var victory_scene = preload("res://UI/Scenes/victory.tscn").instantiate()
 		victory_scene.set_carrot_count(current_carrots)
+		Global.mark_stage_complete(levelNumber)
 		add_child(victory_scene)
+		var previous_best = Global.get_carrot(levelNumber)
+		if current_carrots > previous_best:
+			Global.set_carrot(levelNumber,current_carrots)
 	#var previous_best = Global.get_best_carrot_count(level_name) <- How to deal with saving carrots eventually
 	#if current_carrots > previous_best:
 	#Global.set_best_carrot_count(level_name, current_carrots)

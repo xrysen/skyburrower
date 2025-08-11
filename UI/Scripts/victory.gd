@@ -18,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_cont_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://WorldMap/worldMap.tscn")
+	get_tree().change_scene_to_file("res://WorldMap/Scenes/worldMap.tscn")
 
 
 func set_carrot_count(count: int) -> void:

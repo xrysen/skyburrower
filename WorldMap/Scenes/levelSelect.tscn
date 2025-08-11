@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciivoyogh52hp"]
+
+[ext_resource type="Texture2D" uid="uid://cinske4d8aboq" path="res://WorldMap/Assets/levelSelectButton.png" id="1_fcqat"]
+[ext_resource type="Texture2D" uid="uid://1ywuvpy544n4" path="res://WorldMap/Assets/lockIcon.png" id="2_48jwl"]
+[ext_resource type="Script" uid="uid://cqjmimud6feac" path="res://WorldMap/Scripts/levelSelect.gd" id="2_pa5j3"]
+[ext_resource type="Texture2D" uid="uid://b4vh2fe1wrmy7" path="res://WorldMap/Assets/lsCarrotEmpty.png" id="3_cvlrf"]
+[ext_resource type="FontFile" uid="uid://0mcd71id64dt" path="res://WorldMap/Assets/Digits/lvlSelectFont.png" id="4_pa5j3"]
+
+[node name="LevelSelect" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_fcqat")
+script = ExtResource("2_pa5j3")
+
+[node name="LockIcon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 38.0
+texture = ExtResource("2_48jwl")
+
+[node name="CarrotContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopLeft" type="TextureRect" parent="CarrotContainer"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 13.0
+offset_right = 10.0
+offset_bottom = 22.0
+texture = ExtResource("3_cvlrf")
+stretch_mode = 2
+
+[node name="CenterLeft" type="TextureRect" parent="CarrotContainer"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 19.0
+offset_right = 15.0
+offset_bottom = 28.0
+texture = ExtResource("3_cvlrf")
+
+[node name="TopRight" type="TextureRect" parent="CarrotContainer"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 13.0
+offset_right = 32.0
+offset_bottom = 22.0
+texture = ExtResource("3_cvlrf")
+
+[node name="Center" type="TextureRect" parent="CarrotContainer"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 21.0
+offset_bottom = 28.0
+texture = ExtResource("3_cvlrf")
+
+[node name="CenterRight" type="TextureRect" parent="CarrotContainer"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 27.0
+offset_bottom = 28.0
+texture = ExtResource("3_cvlrf")
+
+[node name="LevelNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("4_pa5j3")
+theme_override_font_sizes/font_size = 9
+text = "25"
+horizontal_alignment = 1

@@ -1,165 +1,300 @@
-[gd_scene load_steps=8 format=3 uid="uid://berfh832d61h"]
+[gd_scene load_steps=10 format=3 uid="uid://berfh832d61h"]
 
 [ext_resource type="Script" uid="uid://e0c7l1ikpeva" path="res://WorldMap/Scripts/WorldMap.gd" id="1_3odkm"]
 [ext_resource type="Texture2D" uid="uid://bfiuoaon5ouny" path="res://WorldMap/Assets/wm.png" id="2_7v4pa"]
+[ext_resource type="Texture2D" uid="uid://br460ac1yi6ir" path="res://WorldMap/Assets/gearsBg.png" id="2_yqjsy"]
 [ext_resource type="Texture2D" uid="uid://jod33sbpodrj" path="res://WorldMap/Assets/UpgradeLayer.png" id="3_yqjsy"]
 [ext_resource type="Theme" uid="uid://btcflhynn2aqm" path="res://WorldMap/Assets/toolTip.tres" id="4_pv4tm"]
 [ext_resource type="Texture2D" uid="uid://26m5nsq810rw" path="res://WorldMap/Assets/plusSign.png" id="5_3jwt5"]
 [ext_resource type="Texture2D" uid="uid://cgjytqicb2bvt" path="res://WorldMap/Assets/plusSignPressed.png" id="6_n3a2q"]
 [ext_resource type="FontFile" uid="uid://ctn7n1fepx6rv" path="res://UI/Assets/saikyoFonto.png" id="7_083fi"]
+[ext_resource type="PackedScene" uid="uid://ciivoyogh52hp" path="res://WorldMap/Scenes/levelSelect.tscn" id="9_yqjsy"]
 
 [node name="WorldMap" type="Node2D"]
 script = ExtResource("1_3odkm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 620.0
+offset_bottom = 320.0
+texture = ExtResource("2_yqjsy")
+
+[node name="Stage Select" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_7v4pa")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="Upgrade Layer" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_yqjsy")
 
 [node name="HButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 42.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 65.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="BSButton" type="TextureButton" parent="."]
-offset_left = 118.0
-offset_top = 71.0
-offset_right = 139.0
-offset_bottom = 94.0
+offset_left = 144.0
+offset_top = 72.0
+offset_right = 165.0
+offset_bottom = 95.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="BSPDButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 100.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 123.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="NumBulletsButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 129.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 152.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="SpeedButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 158.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 181.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="MagnetButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 187.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 210.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="LuckButton" type="TextureButton" parent="."]
-offset_left = 118.0
+offset_left = 144.0
 offset_top = 216.0
-offset_right = 139.0
+offset_right = 165.0
 offset_bottom = 239.0
 theme = ExtResource("4_pv4tm")
 texture_normal = ExtResource("5_3jwt5")
 texture_pressed = ExtResource("6_n3a2q")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 60.0
+offset_left = 82.0
 offset_top = 17.0
-offset_right = 124.0
+offset_right = 146.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(1, 0.772549, 0.184314, 1)
 theme_override_fonts/font = ExtResource("7_083fi")
 text = "999"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 480.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.129412, 0.184314, 0.231373, 1)
-
 [node name="HeartContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 44.0
-offset_right = 123.0
+offset_right = 146.0
 offset_bottom = 64.0
 theme_override_constants/separation = 2
 
 [node name="BulletStrengthContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 73.0
-offset_right = 114.0
+offset_right = 137.0
 offset_bottom = 93.0
 theme_override_constants/separation = 2
 
 [node name="BulletSpeedContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 102.0
-offset_right = 113.0
+offset_right = 136.0
 offset_bottom = 122.0
 theme_override_constants/separation = 2
 
 [node name="BulletsContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 131.0
-offset_right = 113.0
+offset_right = 136.0
 offset_bottom = 151.0
 theme_override_constants/separation = 2
 
 [node name="SpeedContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 160.0
-offset_right = 113.0
+offset_right = 136.0
 offset_bottom = 180.0
 theme_override_constants/separation = 2
 
 [node name="MagnetContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 189.0
-offset_right = 113.0
+offset_right = 136.0
 offset_bottom = 209.0
 theme_override_constants/separation = 2
 
 [node name="LuckContainer" type="HBoxContainer" parent="."]
-offset_left = 57.0
+offset_left = 80.0
 offset_top = 218.0
-offset_right = 113.0
+offset_right = 136.0
 offset_bottom = 238.0
 theme_override_constants/separation = 2
 
 [node name="Button" type="Button" parent="."]
-offset_left = 233.0
-offset_top = 89.0
-offset_right = 241.0
-offset_bottom = 97.0
+offset_left = 527.0
+offset_top = 5.0
+offset_right = 625.0
+offset_bottom = 36.0
 text = "Test Button"
+
+[node name="LevelSelect" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 354.0
+offset_top = 57.0
+offset_right = 394.0
+offset_bottom = 97.0
+level_index = 1
+
+[node name="LevelSelect2" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 392.0
+offset_top = 57.0
+offset_right = 432.0
+offset_bottom = 97.0
+level_index = 2
+
+[node name="LevelSelect3" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 430.0
+offset_top = 57.0
+offset_right = 470.0
+offset_bottom = 97.0
+level_index = 3
+
+[node name="LevelSelect4" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 468.0
+offset_top = 57.0
+offset_right = 508.0
+offset_bottom = 97.0
+level_index = 4
+
+[node name="LevelSelect5" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 506.0
+offset_top = 57.0
+offset_right = 546.0
+offset_bottom = 97.0
+level_index = 5
+
+[node name="LevelSelect6" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 353.0
+offset_top = 108.0
+offset_right = 393.0
+offset_bottom = 148.0
+level_index = 6
+
+[node name="LevelSelect7" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 390.0
+offset_top = 108.0
+offset_right = 430.0
+offset_bottom = 148.0
+level_index = 7
+
+[node name="LevelSelect8" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 428.0
+offset_top = 108.0
+offset_right = 468.0
+offset_bottom = 148.0
+level_index = 8
+
+[node name="LevelSelect9" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 467.0
+offset_top = 108.0
+offset_right = 507.0
+offset_bottom = 148.0
+level_index = 9
+
+[node name="LevelSelect10" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 505.0
+offset_top = 108.0
+offset_right = 545.0
+offset_bottom = 148.0
+level_index = 10
+
+[node name="LevelSelect11" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 354.0
+offset_top = 161.0
+offset_right = 394.0
+offset_bottom = 201.0
+level_index = 11
+
+[node name="LevelSelect12" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 392.0
+offset_top = 161.0
+offset_right = 432.0
+offset_bottom = 201.0
+level_index = 12
+
+[node name="LevelSelect13" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 430.0
+offset_top = 161.0
+offset_right = 470.0
+offset_bottom = 201.0
+level_index = 13
+
+[node name="LevelSelect14" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 468.0
+offset_top = 161.0
+offset_right = 508.0
+offset_bottom = 201.0
+level_index = 14
+
+[node name="LevelSelect15" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 506.0
+offset_top = 161.0
+offset_right = 546.0
+offset_bottom = 201.0
+level_index = 15
+
+[node name="LevelSelect16" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 354.0
+offset_top = 213.0
+offset_right = 394.0
+offset_bottom = 253.0
+level_index = 16
+
+[node name="LevelSelect17" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 392.0
+offset_top = 213.0
+offset_right = 432.0
+offset_bottom = 253.0
+level_index = 17
+
+[node name="LevelSelect18" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 430.0
+offset_top = 213.0
+offset_right = 470.0
+offset_bottom = 253.0
+level_index = 18
+
+[node name="LevelSelect19" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 468.0
+offset_top = 213.0
+offset_right = 508.0
+offset_bottom = 253.0
+level_index = 19
+
+[node name="LevelSelect20" parent="." instance=ExtResource("9_yqjsy")]
+offset_left = 506.0
+offset_top = 213.0
+offset_right = 546.0
+offset_bottom = 253.0
+level_index = 20
 
 [connection signal="pressed" from="HButton" to="." method="_on_h_button_pressed"]
 [connection signal="pressed" from="BSButton" to="." method="_on_bs_button_pressed"]

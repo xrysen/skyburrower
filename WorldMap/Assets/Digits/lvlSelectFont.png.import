@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://0mcd71id64dt"
+path="res://.godot/imported/lvlSelectFont.png-ad67fe94fd6212f3f7fb2e4b5e8955c1.fontdata"
+
+[deps]
+
+source_file="res://WorldMap/Assets/Digits/lvlSelectFont.png"
+dest_files=["res://.godot/imported/lvlSelectFont.png-ad67fe94fd6212f3f7fb2e4b5e8955c1.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("32-111")
+kerning_pairs=PackedStringArray()
+columns=20
+rows=5
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(2, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2
