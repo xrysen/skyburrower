@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cte0g6a4whguh"]
+[gd_scene load_steps=16 format=3 uid="uid://b4qtqnoqgttl2"]
 
+[ext_resource type="Script" uid="uid://dp3nwfnw5t6w7" path="res://Levels/LevelManager.gd" id="1_6xp1k"]
 [ext_resource type="PackedScene" uid="uid://bmkr0jvmfqa08" path="res://Enemies/WaveSpawner..tscn" id="1_qqkb1"]
 [ext_resource type="PackedScene" uid="uid://co52o3cd3up70" path="res://Enemies/Sporespinner/sporespinner.tscn" id="2_6xp1k"]
 [ext_resource type="PackedScene" uid="uid://cp7wuimtjxgmb" path="res://Enemies/Sporespinner/spore.tscn" id="3_6ki5y"]
@@ -15,7 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://bn1cm1mf8h5jf" path="res://Enemies/Thistle Turret/ThistleTurret.tscn" id="13_mhpgx"]
 [ext_resource type="PackedScene" uid="uid://co7ml72e4y3dk" path="res://Items/Coins/BigCoin/BigCoin.tscn" id="14_03ogs"]
 
-[node name="Level1-1" type="Node2D"]
+[node name="Level1-3" type="Node2D"]
+script = ExtResource("1_6xp1k")
+levelNumber = 3
 
 [node name="Sporespinner Spawn" parent="." instance=ExtResource("1_qqkb1")]
 position = Vector2(-516, 336)
@@ -62,7 +65,6 @@ texture = ExtResource("9_mltr5")
 
 [node name="Meadow" parent="." instance=ExtResource("10_povm2")]
 position = Vector2(77, 95)
-script = null
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-259, 180)

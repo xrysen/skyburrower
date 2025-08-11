@@ -1,5 +1,7 @@
 extends Node
 
+signal game_loaded
+
 var coin_count: int = 990
 var fire_rate: float = 0.5
 var strength: int = 1
@@ -99,17 +101,16 @@ func add_carrot(level):
 func reset_carrot(level):
 	levels[level]["carrot_count"] = 0
 
-
-func mark_stage_complete(level):
-	levels[level]["completed"] = true
-	levels[level + 1]["isLocked"] = false
-
-
-func get_carrot(level) -> int:
-	return levels[level]["carrot_count"]
+func complete_level(level_index: int, session_carrots: int):
+	var previous_best = levels[level_index]["carrot_count"]
+	if session_carrots > previous_best:
+		levels[level_index]["carrot_count"] = session_carrots
+		
+	levels[level_index]["completed"] = true
+	if level_index + 1 < levels.size():
+		levels[level_index + 1]["isLocked"] = false
 	
-func set_carrot(level, amount):
-	levels[level]["carrot_count"] = amount
+	save_game()
 	
 func load_level(level):
 	var path = "res://Levels/level%d.tscn" % level
@@ -118,3 +119,53 @@ func load_level(level):
 		get_tree().change_scene_to_packed(level_scene)
 	else:
 		push_error("Level scene not found: %s", % path)
+
+const SAVE_PATH = "user://savegame.dat"
+const SAVE_PASSWORD = "it's_a_secret_to_everyone"
+
+func save_game():
+	var save_date = {
+		"upgrades": upgrades,
+		"levels": levels,
+		"coin_count": coin_count
+	}
+	
+	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE, SAVE_PASSWORD)
+	var json_string = JSON.stringify(save_date, "\t")
+	file.store_string(json_string)
+	print("Game Saved!")
+	
+func load_game():
+	if not FileAccess.file_exists(SAVE_PATH):
+		print("No save file found")
+		return
+	
+	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, SAVE_PASSWORD)
+	
+	if file == null:
+		print("Error opening file")
+		return
+	
+	var json_string = file.get_as_text()
+	var data = JSON.parse_string(json_string)
+	
+	if not data is Dictionary:
+		print("Save data is corrupt")
+		return
+		
+	if data.has("upgrades"):
+		var loaded_upgrades = data["upgrades"]
+		for key in loaded_upgrades:
+			if upgrades.has(key):
+				upgrades[key] = loaded_upgrades[key]
+				
+	if data.has("levels"):
+		var loaded_levels = data["levels"]
+		for i in range(min(levels.size(), loaded_levels.size())):
+			levels[i] = loaded_levels[i]
+			
+	if data.has("coin_count"):
+		coin_count = data["coin_count"]
+	
+	game_loaded.emit()
+	print("Game loaded!")

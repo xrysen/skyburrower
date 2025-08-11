@@ -15,12 +15,15 @@ var full_upgrade := preload("res://WorldMap/Scenes/upgradeFull.tscn")
 
 
 func _ready():
-	$Label.text = "%d" % Global.coin_count
+	refresh_ui()
 	add_child(fade)
-	draw_upgrades()
-	set_tooltip_text()
+	Global.game_loaded.connect(refresh_ui)
 	fade.fade_in()
 
+func refresh_ui():
+	$Label.text = "%d" % Global.coin_count
+	draw_upgrades()
+	set_tooltip_text() 
 
 func draw_heart_upgrade():
 	for child in heart_container.get_children():
@@ -106,6 +109,7 @@ func handle_upgrade(upgrade):
 		draw_upgrades()
 		set_tooltip_text()
 		$Label.text = "%d" % Global.coin_count
+		Global.save_game()
 
 
 func set_tooltip_text():
@@ -174,4 +178,4 @@ func _on_h_button_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/level1.tscn")
+	Global.load_game()

@@ -8,6 +8,7 @@ var full_carrot = preload("res://WorldMap/Assets/lsCarrotFull.png")
 var empty_carrot = preload("res://WorldMap/Assets/lsCarrotEmpty.png")
 
 func _ready():
+	Global.game_loaded.connect(update_button)
 	update_button()
 	
 func update_button():
