@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Skyburrower"
-run/main_scene="uid://berfh832d61h"
+run/main_scene="uid://cpjwp4abovpc0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

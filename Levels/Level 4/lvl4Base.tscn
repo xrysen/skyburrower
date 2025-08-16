@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpjwp4abovpc0"]
+
+[ext_resource type="Texture2D" uid="uid://b6f742aobhfxw" path="res://Levels/Level 4/lvl4-1.png" id="1_twj8x"]
+[ext_resource type="PackedScene" uid="uid://c3pw8y0c4luf1" path="res://Effects/fog.tscn" id="1_x6dgl"]
+[ext_resource type="Texture2D" uid="uid://ba843e46mrxo3" path="res://Levels/Level 4/lvl4-moon.png" id="2_glabr"]
+[ext_resource type="Texture2D" uid="uid://6ncr1bem667n" path="res://Levels/Level 4/lvl4-2.png" id="3_x6dgl"]
+[ext_resource type="Texture2D" uid="uid://r66057uj33un" path="res://Levels/Level 4/lvl4-3.png" id="4_a4opp"]
+[ext_resource type="Texture2D" uid="uid://bbrpbk0brt7pe" path="res://Levels/Level 4/lvl4-4.png" id="5_5vpy4"]
+[ext_resource type="Texture2D" uid="uid://cb0yayj6yg1cp" path="res://Levels/Level 4/lvl4-5.png" id="6_2a8mp"]
+[ext_resource type="PackedScene" uid="uid://gq0sfv5pwpai" path="res://Meadow/meadow.tscn" id="7_glabr"]
+
+[node name="Lvl4Base" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-40, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(310, 206)
+texture = ExtResource("1_twj8x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_glabr")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(310, 206)
+texture = ExtResource("3_x6dgl")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(310, 206)
+texture = ExtResource("4_a4opp")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(310, 206)
+texture = ExtResource("5_5vpy4")
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-512, -27)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-120, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(310, 206)
+texture = ExtResource("6_2a8mp")
+
+[node name="Meadow" parent="." instance=ExtResource("7_glabr")]
+position = Vector2(88, 51)
+
+[node name="Fog" parent="." instance=ExtResource("1_x6dgl")]
+autoscroll = Vector2(-100, 0)

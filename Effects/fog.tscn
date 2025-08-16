@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3pw8y0c4luf1"]
+
+[ext_resource type="Shader" uid="uid://dkw6mtkf0fcl8" path="res://Effects/fog.gdshader" id="1_d0qjn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d0qjn"]
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n6xw5"]
+width = 640
+height = 380
+seamless = true
+seamless_blend_skirt = 0.75
+noise = SubResource("FastNoiseLite_d0qjn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6xw5"]
+shader = ExtResource("1_d0qjn")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_n6xw5")
+shader_parameter/density = 1.0
+shader_parameter/speed = Vector2(0.02, 0.01)
+
+[node name="Fog" type="Parallax2D"]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-10, 0)
+repeat_times = 1000
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_n6xw5")
+offset_right = 640.0
+offset_bottom = 380.0
+color = Color(0.54902, 0.470588, 0.666667, 1)
